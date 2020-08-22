@@ -1,0 +1,56 @@
+<h1 align="center">Update Site Details</h1>
+<form [formGroup]="updateSiteForm">
+     <!--Add details of new site here-->
+    <mat-form-field class="example-full-width">
+        <mat-label>Project/Site ID</mat-label>
+        <input matInput #message formControlName="site_id" maxlength="4" placeholder="Ex. 0012" name="site_id" required> 
+        <mat-hint align="start"><strong>Don't Add Charachters</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 5</mat-hint>
+    </mat-form-field><br><br><br>
+
+    
+ <mat-form-field class="site_name">
+    <mat-label>Site Name</mat-label>
+    <input matInput #message formControlName="site_name" maxlength="256" name="site_name" required>
+    <mat-hint align="start"><strong>Type a Suitable Name for Starting Project</strong> </mat-hint>
+ </mat-form-field> <br><br><br>
+ 
+<mat-form-field class="est_noemployees">
+  <mat-label>Estimated No. of Un-Skilled Labours</mat-label>
+  <input matInput #message formControlName="no_of_usk" maxlength="3"  required>
+</mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<mat-form-field class="est_noemployees">
+<mat-label>Estimated No. of Skilled Labours</mat-label>
+<input matInput #message formControlName="no_of_sk" maxlength="3"  required>
+</mat-form-field> <br><br><br>
+
+<mat-form-field class="est_noemployees">
+<mat-label>Estimated Budget</mat-label>
+<input  [allowNegative]="false" matInput #message formControlName="est_budget" maxlength="10"  name="est_budget" required>
+</mat-form-field> <br><br><br>
+
+ <mat-form-field class="place">
+    <mat-label>Nearest Town</mat-label>
+    <input matInput #message formControlName="place" maxlength="256"  name="place" required>
+   
+ </mat-form-field> <br><br><br>
+ <mat-form-field>
+    <mat-label>Starting Date</mat-label>
+    <input matInput [matDatepicker]="s_dpicker" formControlName="start_date" required>
+    <mat-datepicker-toggle matSuffix [for]="s_dpicker"></mat-datepicker-toggle>
+    <mat-datepicker #s_dpicker></mat-datepicker>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <mat-label>Estimated Completing Date</mat-label>
+    <input matInput [matDatepicker]="e_dpicker" formControlName="end_date" required>
+    <mat-datepicker-toggle matSuffix [for]="e_dpicker"></mat-datepicker-toggle>
+    <mat-datepicker #e_dpicker></mat-datepicker>
+  </mat-form-field><br><br><br><br><br>
+    <div>
+      <button (click)="onUpdate()" mat-raised-button  color="primary">Update</button>&nbsp;&nbsp;
+      <button (click)="onCancel()" mat-raised-button  color="warn">Cancel</button>
+ 
+    </div>
+  </form>

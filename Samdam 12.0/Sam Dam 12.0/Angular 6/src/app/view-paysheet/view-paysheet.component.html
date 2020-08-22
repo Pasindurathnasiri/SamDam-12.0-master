@@ -1,0 +1,92 @@
+
+<mat-card id="paysheet" class="card"><img width="100px" src="../../assets/img/logo sam dam only.png"><h1 align="center">=======PAY-SHEET=======</h1>
+    <h1 align="center">2020</h1>
+    <form [formGroup]="addAdvanceForm"  #resetaddAdvanceGroup="ngForm"><br><br>
+
+     <mat-form-field class="example-full-width">
+     <mat-label>Employee ID</mat-label>
+     <input matInput #message formControlName="emp_id" maxlength="5" placeholder="Ex. 12345" name="emp_id"> 
+     </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+     <mat-form-field class="example-full-width">
+        <mat-label>Month</mat-label>
+        <input matInput disabled #message formControlName="month" name="month"> 
+        </mat-form-field><br><br><br>
+
+        <mat-form-field class="name_with-in">
+            <mat-label>Employee Name</mat-label>
+            <input matInput disabled #message formControlName="name_in" maxlength="256" name="name_in">
+          </mat-form-field> <br>
+        <h3>=============================================================</h3>
+        <h3>EARNINGS</h3><br><br>
+          <mat-form-field class="possible-advance">
+            <mat-label>Working Days</mat-label>
+            <input matInput disabled #message formControlName="days" name="days">
+          </mat-form-field> &nbsp;&nbsp;&nbsp;
+
+          <mat-form-field class="possible-advance">
+            <mat-label>Payments for Days</mat-label>
+            <span matPrefix>Rs:</span>
+            <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput disabled #message formControlName="day_pay" name="day_pay">
+          </mat-form-field> <br><br>
+
+          <mat-form-field class="possible-advance">
+            <mat-label>OT</mat-label>
+            <input matInput disabled #message formControlName="ots" name="ots">
+          </mat-form-field> &nbsp;&nbsp;&nbsp;
+
+          <mat-form-field class="possible-advance">
+            <mat-label>Payments for OT</mat-label>
+            <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput disabled #message formControlName="ot_pay" name="ot_pay">
+          </mat-form-field> <br><br>
+          <h3>=============================================================</h3>
+          <h3>GROSS PAY</h3>
+          
+          <mat-form-field class="possible-advance">
+            <mat-label></mat-label>
+            <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput disabled #message formControlName="gross_pay" name="gross_pay">
+          </mat-form-field> <br><br>
+          <h3>=============================================================</h3>
+          <h3>DEDUCTIONS</h3>
+          <mat-form-field class="possible-advance">
+            <mat-label>Advance Paid</mat-label>
+            <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput disabled #message formControlName="advance_paid" name="advance_paid">
+          </mat-form-field> <br><br>
+
+          <mat-form-field class="possible-advance">
+            <mat-label>EPF</mat-label>
+            <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput disabled #message formControlName="epf" name="epf">
+          </mat-form-field> <br><br>
+
+          <mat-form-field class="possible-advance">
+            <mat-label>ETF</mat-label>
+            
+            <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput disabled #message formControlName="etf" name="etf">
+          </mat-form-field> <br><br>
+          <h3>=============================================================</h3>
+          <h3>TOTAL DEDUCTIONS</h3>
+          <mat-form-field class="possible-advance">
+            <mat-label></mat-label>
+
+            <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput disabled #message formControlName="total_deduct" name="total_deduct">
+          </mat-form-field> <br><br>
+
+          <h3>=============================================================</h3>
+          <h3>N E T  P A Y</h3>
+          <mat-form-field class="possible-advance">
+            <mat-label></mat-label>
+           
+            <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput disabled #message formControlName="net_pay" name="net_pay">
+          </mat-form-field> <br><br>
+
+
+
+        
+        </form>
+
+
+
+</mat-card><br><br><br>
+<button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>&nbsp;&nbsp;
+<button (click)="printSheet()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>

@@ -1,0 +1,17 @@
+
+<mat-card>
+    <h1 align="center">User Profile</h1>
+    <mat-list>
+        <mat-list-item>
+           <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
+            <h4 mat-line>{{userDetails.fullName.split(' ')[0]}}</h4>
+            <p mat-line class="demo-2"> {{userDetails.email}} </p>
+            <input type="button" (click)="onLogout()" value="Logout" />
+      </mat-list-item>
+      </mat-list>
+</mat-card>
+<br><br><br><br>
+<mat-card>
+    <button class="register-button" mat-raised-button color="primary" [routerLink]="['/signup']">Register User</button>&nbsp;
+       
+</mat-card>

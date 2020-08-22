@@ -1,0 +1,35 @@
+.admission-form{
+    margin-left: 20pt;
+ 
+}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .name-with-in {
+    width: 60%;
+  }
+
+  .name-full{
+      width: 75%;
+  }
+
+  .address{
+    width: 40%;
+}
+
+.work-place{
+    width:30%
+}
+
+.remarks{
+    width: 75%;
+}
+
+.card{
+    margin-top: 10pt;
+    margin-left: 10%;
+    width: 80%;
+}

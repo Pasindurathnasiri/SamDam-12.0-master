@@ -1,0 +1,33 @@
+.input-name{
+    padding-left: 0;
+    padding-right: 8pt;
+    width: 300pt;
+}
+
+.option-search{
+    padding-right: 25pt;
+}
+
+.month-option{
+    padding-right: 105pt;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+.example-container {
+    height: 100%;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
+  
+  .mat-table-sticky {
+    border-top: 1px solid #e0e0e0;
+  }

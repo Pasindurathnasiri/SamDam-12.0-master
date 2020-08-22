@@ -1,0 +1,29 @@
+.crud-btn{
+    padding-left: 10pt;
+
+}
+
+.remove-btn{
+    margin-left: 5pt;
+}
+
+.save-btn{
+    margin-right: 10pt;
+    margin-left: 45%;
+  
+}
+
+.option-search{
+    margin-left: 10pt;
+}
+
+.input-name{
+    margin-left: 5pt;
+    width: 220pt;
+    margin-right: 10pt;
+}
+
+.full-width-table {
+    width: 100%;
+  }
+  

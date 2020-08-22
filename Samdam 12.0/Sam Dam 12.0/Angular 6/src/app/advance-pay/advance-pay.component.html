@@ -1,0 +1,219 @@
+<h1 align ="center">Salary Advances</h1>
+ 
+  <mat-tab-group animationDuration="1000ms">
+    <mat-tab label="For Month">
+      
+      <div class="search-container" align="center">
+ 
+        <mat-form-field class="input-name" appearance="fill">
+          <mat-label>Search Here</mat-label>  
+          <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
+          <button mat-button matSuffix mat-icon-button aria-label="clear"*ngIf="searchKey" (click)="onSearchClear()"></button>
+          </mat-form-field>
+               <!--  Search button-->
+        
+        </div>
+        <form [formGroup]=this.forSelectMonth>
+          <mat-form-field>
+            <mat-label>Select Month</mat-label>
+            <mat-select [(value)]="selected" formControlName="select_month" (selectionChange)="onMonthChange()" >
+              <mat-option value="January">January</mat-option>
+              <mat-option value="February">February</mat-option>
+              <mat-option value="March">March</mat-option>
+              <mat-option value="April">April</mat-option>
+              <mat-option value="May">May</mat-option>
+              <mat-option value="June">June</mat-option>
+              <mat-option value="July">July</mat-option>
+              <mat-option value="August">August</mat-option>
+              <mat-option value="September">September</mat-option>
+              <mat-option value="October">October</mat-option>
+              <mat-option value="November">November</mat-option>
+              <mat-option value="December">December</mat-option>
+              
+            </mat-select>
+           
+          </mat-form-field> <br><br>
+        </form>
+        <div class="advance-tbl">
+            <!--Only Advaces from the Attendance show in this table-->
+            
+          <div class="mat-elevation-z8">
+            <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource2">
+          
+         
+              <!-- Id Column -->
+              <ng-container matColumnDef="emp_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Id</th>
+                <td mat-cell *matCellDef="let row">{{row.emp_id}}</td>
+                <td mat-footer-cell *matFooterCellDef>Total</td>
+              </ng-container>
+          
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+                <td mat-cell *matCellDef="let row">{{row.name_in}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+              
+              <ng-container matColumnDef="designation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+                <td mat-cell *matCellDef="let row">{{row.designation[0].name}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+              
+              <ng-container matColumnDef="site">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Site</th>
+                <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+        
+        
+          
+              <ng-container matColumnDef="advance_req">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Advance Requested</th>
+                <td mat-cell *matCellDef="let row">{{row.advance_req | currency:'Rs:'}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+              
+              <ng-container matColumnDef="advance_paid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Advance Paid</th>
+                <td mat-cell *matCellDef="let row">{{row.advance_paid | currency:'Rs:'}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+        
+        
+        
+              <ng-container matColumnDef="action_req">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                  <!--Increase Attendance Buttton-->
+                  <button mat-icon-button color="primary" (click)="openBottomSheet(i,element)" class="push-right"><mat-icon>add_box</mat-icon></button>
+                  <!--Decrease Attendance Button-->
+                  <button mat-icon-button color="warn" (click)="payAdvance(i, element)"><mat-icon>local_atm</mat-icon></button>
+                </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+        
+               
+              
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                  Loading Data...
+                </mat-footer-cell>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+              <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+            </table>
+          
+            <mat-paginator #paginator
+                [length]="dataSource?.data.length"
+                [pageIndex]="0"
+                [pageSize]="50"
+                [pageSizeOptions]="[25, 50, 100, 250]">
+            </mat-paginator>
+          </div>
+            
+        </div>
+
+    </mat-tab>
+    <mat-tab label="For Year">
+      <div class="search-container" align="center">
+ 
+        <mat-form-field class="input-name" appearance="fill">
+          <mat-label>Search Here</mat-label>  
+          <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
+          <button mat-button matSuffix mat-icon-button aria-label="clear"*ngIf="searchKey" (click)="onSearchClear()"></button>
+          </mat-form-field>
+               <!--  Search button-->
+        
+        </div>
+        <div class="advance-tbl">
+            <!--Only Advaces from the Attendance show in this table-->
+            
+          <div class="mat-elevation-z8">
+            <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
+          
+         
+              <!-- Id Column -->
+              <ng-container matColumnDef="emp_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Id</th>
+                <td mat-cell *matCellDef="let row">{{row.emp_id}}</td>
+                <td mat-footer-cell *matFooterCellDef>Total</td>
+              </ng-container>
+          
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+                <td mat-cell *matCellDef="let row">{{row.name_in}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+              
+              <ng-container matColumnDef="designation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+                <td mat-cell *matCellDef="let row">{{row.designation[0].name}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+              
+              <ng-container matColumnDef="site">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Site</th>
+                <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+        
+        
+          
+              <ng-container matColumnDef="advance_req">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Advance Requested</th>
+                <td mat-cell *matCellDef="let row">{{row.advance_req | currency:'Rs:'}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+              
+              <ng-container matColumnDef="advance_paid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Advance Paid</th>
+                <td mat-cell *matCellDef="let row">{{row.advance_paid | currency:'Rs:'}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+        
+        
+        
+              <ng-container matColumnDef="action_req">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                  <!--Increase Attendance Buttton-->
+                  <button mat-icon-button color="primary" (click)="openBottomSheet(i,element)" class="push-right"><mat-icon>add_box</mat-icon></button>
+                  <!--Decrease Attendance Button-->
+                  <button mat-icon-button color="warn" (click)="payAdvance(i, element)"><mat-icon>local_atm</mat-icon></button>
+                </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+        
+               
+              
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                  Loading Data...
+                </mat-footer-cell>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+              <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+            </table>
+          
+            <mat-paginator #paginator
+                [length]="dataSource?.data.length"
+                [pageIndex]="0"
+                [pageSize]="50"
+                [pageSizeOptions]="[25, 50, 100, 250]">
+            </mat-paginator>
+          </div>
+            
+        </div>
+
+    </mat-tab>
+    
+  </mat-tab-group>
+     <!--Search Text-->
+     

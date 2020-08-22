@@ -1,0 +1,31 @@
+<h1 align="center">Tranfer Material to Site</h1>
+<form [formGroup]=transferMaterialForm>
+    <mat-form-field>
+        <mat-label>Select Destination Site</mat-label>
+        <mat-select [(value)]="selectedDesignation" formControlName="site" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let site of sites" [value]="site">
+            {{site.site_name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="siteControl.hasError('required')">Please choose Designation</mat-error>
+        
+      </mat-form-field> <br><br>
+    
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="dorpicker" formControlName="dor">
+      <mat-datepicker-toggle matSuffix [for]="dorpicker"></mat-datepicker-toggle>
+      <mat-datepicker #dorpicker></mat-datepicker>
+    </mat-form-field><br><br>
+  <!-- Material Types -->
+  <section *ngFor="let material_R of materials_R; let i=index;">
+    <mat-form-field class="input-nic" >
+        <mat-label>{{material_R}}</mat-label>
+        <input matInput name="material_{{i}}" formControlName="{{material_R}}" > 
+    </mat-form-field><br><br>
+    </section>
+    <button (click)="addMaterialData()"  mat-raised-button color="primary">Tranfer Material</button>&nbsp;&nbsp;
+    <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+  
+</form>

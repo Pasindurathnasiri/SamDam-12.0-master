@@ -1,0 +1,108 @@
+<h1 align="center">Transfer Vehicle</h1>
+<form [formGroup]="updateSiteForm">
+    <ng-template matStepLabel>Allocate Vehicle</ng-template>
+    <!--Allocate Options Here-->
+    <mat-form-field>
+      <mat-label>Select Destination Site</mat-label>
+      <mat-select [(value)]="selectedDesignation" formControlName="site" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let site of sites" [value]="site">
+          {{site.site_name}}
+        </mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="siteControl.hasError('required')">Please choose Designation</mat-error> -->
+      
+    </mat-form-field> <br><br>
+    <h2>Select Vehicle or Machine and Transfer to selected Site</h2>
+
+<mat-card>
+<div class="mat-elevation-z8">
+    <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceVH">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+        </ng-container>
+ 
+      <!-- Id Column -->
+      <ng-container matColumnDef="reg_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Reg No</th>
+        <td mat-cell *matCellDef="let row">{{row.reg_id}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="vh_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vehicle or Machine Type</th>
+        <td mat-cell *matCellDef="let row">{{row.vh_type[0].vh_type}}</td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="brand">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Brand</th>
+        <td mat-cell *matCellDef="let row">{{row.brand}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Model</th>
+        <td mat-cell *matCellDef="let row">{{row.vh_model}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="site">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Allocated Site</th>
+        <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="driver">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Driver or Operator</th>
+        <td mat-cell *matCellDef="let row">{{row.driver[0].name_in}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="rate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate per Km/Hr</th>
+        <td mat-cell *matCellDef="let row">{{row.unit_rate | currency:'Rs.'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+         <!--Remove material Button-->
+         <button mat-icon-button color="primary" (click)="updateVH(i,element)"><mat-icon>launch</mat-icon></button> 
+         <button mat-icon-button color="warn" (click)="deleteVH(i,element)"><mat-icon>delete_outline</mat-icon></button>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading Data...
+        </mat-footer-cell>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsVH"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsVH;"></tr>
+      <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+    </table>
+  
+    <mat-paginator #paginator
+        [length]="dataSource?.data.length"
+        [pageIndex]="0"
+        [pageSize]="50"
+        [pageSizeOptions]="[25, 50, 100, 250]">
+    </mat-paginator>
+  
+  
+
+</div></mat-card><br><br>
+<div>
+    <button mat-raised-button color="primary" (click)="updateSite()">Transfer Vehicle</button>
+  </div>
+</form>

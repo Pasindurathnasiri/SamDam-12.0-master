@@ -1,0 +1,28 @@
+export class MaterialDates {
+    dor:string;
+    site:string;
+    site_id:string;
+    month:string;
+    T_10:number;
+    T_32:number;
+    sand:number
+    cement:number;
+    ABC:number;
+    binding:number;
+    metal_1:number;
+    metal_1h:number;
+    metal_3q:number;
+    T_16:number;
+    HBlock_4:number;
+    T_10_R:number;
+    T_32_R:number;
+    sand_R:number
+    cement_R:number;
+    ABC_R:number;
+    binding_R:number;
+    metal_1_R:number;
+    metal_1h_R:number;
+    metal_3q_R:number;
+    T_16_R:number;
+    HBlock_4_R:number;
+}

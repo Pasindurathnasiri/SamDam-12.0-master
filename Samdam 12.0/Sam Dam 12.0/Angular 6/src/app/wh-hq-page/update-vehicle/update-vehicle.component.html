@@ -1,0 +1,110 @@
+<h1 align="center">Update Vehicle Details</h1>
+
+<mat-card class="card">
+    
+    <form [formGroup]="this.updateVHGroup"> 
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Vehicle Registration No.</mat-label>
+          <input matInput #message formControlName="reg_id" maxlength="13" placeholder="Ex. 123" name="eq_id" required> 
+            </mat-form-field><br><br><br>
+      
+        
+        <mat-form-field class="vh-type">
+            <mat-label>Type of Machine or Vehicle</mat-label>
+            <mat-select [(value)]="selectedMat" formControlName="vh_type" required>
+              <mat-option >--</mat-option>
+               <mat-option [value]="vh_type" *ngFor="let vh_type of vh_types"> 
+                {{vh_type.vh_type}}
+              </mat-option>
+            </mat-select>
+           </mat-form-field><br><br>
+
+            <mat-form-field class="brand_name">
+              <mat-label>Brand/Manufacture Name</mat-label>
+              <input matInput #message formControlName="brand" maxlength="25" placeholder="Mitsubishi" name="brand" required>
+                 </mat-form-field> <br>
+
+            <mat-form-field class="model">
+            <mat-label>Model Name</mat-label>
+            <input matInput #message formControlName="vh_model" maxlength="25" placeholder="Canter" name="vh_model" required>
+            </mat-form-field> <br>
+
+            <mat-form-field class="buyer">
+              <mat-label>Name of Buyer</mat-label>
+              <input matInput #message formControlName="buyer" maxlength="300" placeholder="ABC Agency" name="buyer" required>
+              </mat-form-field><br>
+      
+      
+       <!-- added date-->
+      
+       <mat-form-field>
+        <mat-label>Date of Adding to the Store</mat-label>
+        <input matInput [matDatepicker]="dorpicker" formControlName="dor" required>
+        <mat-datepicker-toggle matSuffix [for]="dorpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dorpicker></mat-datepicker>
+      </mat-form-field><br><br>
+      
+      <mat-form-field class="eng_cap">
+        <mat-label>Engine Capacity</mat-label>
+        <input type="number" maxlength="9" name="eng_cap" formControlName="eng_cap" matInput placeholder=" " required>
+      </mat-form-field>  <br>
+
+        <mat-form-field class="valueVH">
+          <mat-label>Value</mat-label>
+          <span matPrefix>Rs: &nbsp;</span>
+          <input type="number" maxlength="9" name="valueVH" formControlName="valueVH" matInput placeholder=" " required>  
+        </mat-form-field><br><br>
+       
+        <mat-form-field class="chassie_no">
+            <mat-label>Chassie Number</mat-label>
+            <input maxlength="13" name="chassie_no" formControlName="chassie_no" matInput placeholder=" " required>
+        </mat-form-field> <br>   
+        
+        <mat-form-field class="eng_no">
+            <mat-label>Engine Number</mat-label>
+            <input maxlength="16" name="eng_no" formControlName="eng_no" matInput placeholder=" " required>
+        </mat-form-field>  <br><br>
+
+     <mat-form-field>
+        <mat-label>Select Site Warehouse</mat-label>
+        <mat-select [(value)]="selectedDesignation" formControlName="site" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let site of sites" [value]="site">
+            {{site.site_name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field> <br><br>
+
+           <mat-form-field class="fuel_type">
+            <mat-label>Fuel Type</mat-label>
+            <mat-select formControlName="fuel_type" required>
+              <mat-option value="Diesel" >Diesel</mat-option>
+              <mat-option value="Petrol">Petrol</mat-option>
+              <mat-option value="Hybrid">Hybrid</mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose a Work Place</mat-error> -->
+           </mat-form-field><br><br>
+
+           <mat-form-field class="unit_rate">
+            <mat-label>Unit Rate</mat-label>
+            <span matPrefix>Rs: &nbsp;</span>
+            <input type="number" maxlength="9" name="unit_rate" formControlName="unit_rate" matInput placeholder=" " required>  
+          </mat-form-field><br><br>
+
+          <mat-form-field class="driver">
+            <mat-label>Driver/Operater</mat-label>
+            <mat-select [(value)]="selectedDriver" formControlName="driver" required>
+              <mat-option >--</mat-option>
+              <mat-option [value]="driver" *ngFor="let driver of drivers">
+                {{driver.name_in}}
+              </mat-option>
+            </mat-select>
+           </mat-form-field><br><br>
+       
+      
+        <button (click)=onUpdateVehicle() mat-raised-button color="primary">Update</button>&nbsp;&nbsp;
+        <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+
+      </form> 
+</mat-card>

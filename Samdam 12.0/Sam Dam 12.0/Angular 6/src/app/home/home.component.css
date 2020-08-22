@@ -1,0 +1,50 @@
+.bg{
+    background-size: cover;
+    background-image: url("../../assets/img/Background.jpg");
+    
+    height: 75%;
+}
+
+.body{
+    background-size: cover;
+    background-image: url("../../assets/img/Background.jpg"); 
+    
+    height: 75%;
+}
+
+mat-grid-tile {
+    background: lightblue;
+  }
+
+.vision-card{
+    background-blend-mode: lighten;
+    width: 80%;
+    height: 15%;
+    background-color: rgba(255, 255, 255, 0.575);
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.mission-card{
+    margin-top: 8%;
+    width: 80%;
+    height: 20%;
+    margin-left: 10%;
+    background-blend-mode: lighten;
+    background-color: rgba(255, 255, 255, 0.575);
+}
+
+.titleh{
+    font-size: 35pt;
+    font: bolder;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.statement{
+    font-size: 25pt;
+    font: bolder;
+}
+
+.list-mission{
+    list-style-type: square;
+}

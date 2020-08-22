@@ -1,0 +1,20 @@
+<br><h1 align="center">Quantity Survaying Department Task Management</h1><br><br>
+
+<button  mat-raised-button (click)="onAddTask()" color="primary">Add</button>
+<br><br>
+<mat-list>
+    <mat-list-item *ngFor="let fil_data of FilteredQSData; last as last"  >
+       <mat-icon mat-list-icon>engineering</mat-icon>
+        
+       <h4 mat-line>Task : {{fil_data.task_id}}-{{fil_data.name}} ( {{fil_data.type[0]}} ) </h4>
+       <h5 mat-line>{{getProgress(fil_data)}} % Completed</h5>
+       <mat-progress-bar mat-line mode="determinate" value="{{getProgress(fil_data)}}"></mat-progress-bar>
+         
+       <p mat-line class="demo-2"> Measurements : Length={{fil_data.length}}(m)  Height={{fil_data.height}}(m)  Width={{fil_data.width}}(m)  Weight={{fil_data.weight}}(Tons) </p>&nbsp;
+        <button mat-raised-button color="primary" (click)="openDialyRecord(fil_data)">Daily Records</button>
+        <button mat-icon-button color="primary" (click)="editTask(fil_data)"><mat-icon>launch</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="deleteTask(fil_data)"><mat-icon>delete_outline</mat-icon></button>
+          
+        <mat-divider [inset]="true" ></mat-divider>
+     </mat-list-item>
+  </mat-list>

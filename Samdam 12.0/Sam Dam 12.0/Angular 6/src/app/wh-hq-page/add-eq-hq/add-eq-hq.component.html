@@ -1,0 +1,80 @@
+<mat-card class="card">
+    <h1 align="center">Add Equipments to Main Warehouse</h1>
+
+
+  
+    <form [formGroup]="this.addEQGroup" (ngSubmit)="onSubmit()"> 
+      <mat-form-field>
+        <mat-label>Select Site Warehouse</mat-label>
+        <mat-select [(value)]="selectedDesignation" formControlName="site" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let site of sites" [value]="site">
+            {{site.site_name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="siteControl.hasError('required')">Please choose Designation</mat-error>
+        <mat-hint>{{siteControl.value?.sound}}</mat-hint>
+      </mat-form-field> <br><br>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Equipment ID</mat-label>
+          <input matInput #message formControlName="eq_id" maxlength="3" placeholder="Ex. 123" name="eq_id" required> 
+          <mat-hint align="start"><strong>Don't Add Charachters</strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 3</mat-hint>
+        </mat-form-field><br><br><br>
+      
+        
+        <mat-form-field class="eq-type">
+            <mat-label>Type of Equipment</mat-label>
+            <mat-select [(value)]="selectedMat" formControlName="eq_type" required>
+              <mat-option >--</mat-option>
+              <mat-option [value]="eq_type" *ngFor="let eq_type of eq_types">
+                {{eq_type.eq_type}}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose a Work Place</mat-error> -->
+           </mat-form-field><br><br>
+
+            <mat-form-field class="brand_name">
+              <mat-label>Brand/Manufacture Name</mat-label>
+              <input matInput #message formControlName="brand_name" maxlength="25" placeholder="ABC company" name="brand_name" required>
+              <mat-hint align="end">{{message.value.length}} / 25</mat-hint>
+            </mat-form-field> <br>
+        
+            <mat-form-field class="buyer">
+              <mat-label>Name of Buyer</mat-label>
+              <input matInput #message formControlName="buyer" maxlength="300" placeholder="ABC Hardware " name="buyer" required>
+              <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+            </mat-form-field><br>
+      
+      
+       <!-- added date-->
+      
+       <mat-form-field>
+        <mat-label>Date of Equipment Added</mat-label>
+        <input matInput [matDatepicker]="dompicker" formControlName="dom" required>
+        <mat-datepicker-toggle matSuffix [for]="dompicker"></mat-datepicker-toggle>
+        <mat-datepicker #dompicker></mat-datepicker>
+      </mat-form-field><br><br>
+      
+        
+        <mat-form-field class="price_unit">
+          <mat-label>Price Per 1</mat-label>
+          <span matPrefix>Rs: &nbsp;</span>
+          <input type="number" maxlength="9" name="price_unit" formControlName="price_unit" matInput placeholder=" " required>
+          
+        </mat-form-field>
+      
+<br><br>
+       <mat-form-field class="amount">
+         <mat-label>Amount</mat-label>
+         <input type="number" maxlength="9" name="amount" formControlName="amount" matInput placeholder=" " required>
+         
+       </mat-form-field>
+       <br>
+      
+        <button type="submit" mat-raised-button color="primary">Add</button>&nbsp;&nbsp;
+        <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+
+      </form> 
+</mat-card>

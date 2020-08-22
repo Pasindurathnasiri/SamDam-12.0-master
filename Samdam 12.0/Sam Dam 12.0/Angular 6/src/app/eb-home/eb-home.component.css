@@ -1,0 +1,31 @@
+.ongoingbutton{
+    
+    padding-top: 5mm;
+    padding-bottom: 5mm;
+    padding-left: 1.34cm;
+    padding-right: 1.34cm;
+    font-size: 15pt;
+}
+
+.schedulebutton{
+    padding-top: 5mm;
+    padding-bottom: 5mm;
+    font-size: 15pt;
+    padding-left: 1.42cm;
+    padding-right: 1.42cm;
+}
+
+.monthlybutton{
+    padding-top: 5mm;
+    padding-bottom: 5mm;
+    font-size: 15pt;
+    padding-left: 2.58cm;
+    padding-right: 2.58cm;
+}
+
+.bg{
+    background-size: cover;
+    height: 75cm;
+   
+
+}

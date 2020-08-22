@@ -1,0 +1,29 @@
+<mat-card class="card"><h1 align="center">Request Advance</h1>
+ 
+    <form [formGroup]="addAdvanceForm"  #resetaddAdvanceGroup="ngForm">
+
+     <mat-form-field class="example-full-width">
+     <mat-label>Employee ID</mat-label>
+     <input matInput #message formControlName="emp_id" maxlength="5" placeholder="Ex. 12345" name="emp_id"> 
+     </mat-form-field><br><br><br>
+
+
+        <mat-form-field class="name_with-in">
+            <mat-label>Employee Name</mat-label>
+            <input matInput disabled #message formControlName="name_in" maxlength="256" name="name_in">
+          </mat-form-field> <br><br><br>
+
+          <mat-form-field class="possible-advance">
+            <mat-label>Advance Amount</mat-label>
+            <span matPrefix>Rs:</span>
+            <input matInput disabled #message formControlName="advance_req" name="advance_req">
+          </mat-form-field> <br><br><br><br>
+
+          <button (click)="addAdvanceRequest()" mat-raised-button color="primary">Request Advance</button>&nbsp;&nbsp;
+         <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+
+        </form>
+
+
+
+</mat-card>

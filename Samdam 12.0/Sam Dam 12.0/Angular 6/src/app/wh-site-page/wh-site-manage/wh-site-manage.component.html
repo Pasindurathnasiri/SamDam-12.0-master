@@ -1,0 +1,422 @@
+<h1 align="center">Warehouse - {{getSiteName()}} </h1>
+
+ 
+  <mat-tab-group animationDuration="1000ms">
+     
+    <mat-tab label="Material">
+        <br><br><br>
+         <mat-accordion>
+            
+       
+            
+             
+              <!-- Material type add and delete and update table -->
+              <!--Search Text-->
+    <!--Employee Table-->
+    <mat-card id="print_table">
+        
+            <!--  Search button-->
+           
+            
+            <div class="crud-btn">
+                <button  mat-raised-button (click)="onAdd()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>
+                <mat-form-field class="search-mat-type" appearance="fill">
+                    <mat-label>Search Here</mat-label>  
+                    <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
+                    <button mat-button matSuffix mat-icon-button aria-label="clear"*ngIf="searchKey" (click)="onSearchClear()"></button>
+                    </mat-form-field>      
+            </div><br><br>
+           
+    <div class="employee-tbl">
+      <p *ngIf="AllMaterialData.length <= 0" class="no-data">There is no Material added yet!</p>
+    
+    
+    </div>
+    <!--Filter Options
+    <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 15px;">
+      <mat-label>Filter {{filter.name}}</mat-label>
+      <select matNativeControl name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+        (change)="filterChange(filter,$event)">
+        <option value="">-- Select {{filter.name}} --</option>
+        <option [value]="item" *ngFor="let item of filter.options">{{item.site_name}}</option>
+      </select>
+    </mat-form-field>
+    &nbsp;
+    <button mat-raised-button color="warn" (click)="resetFilters()">Reset</button>-->
+      <div class="mat-elevation-z8">
+        <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceMatTypes">
+      
+     
+          <!-- Id Column -->
+          <ng-container matColumnDef="mat_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Material ID</th>
+            <td mat-cell *matCellDef="let row">{{row.mat_id}}</td>
+          </ng-container>
+  
+  
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let row">{{row.mat_name}}</td>
+          </ng-container>
+      
+          
+          <ng-container matColumnDef="unit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Unit</th>
+            <td mat-cell *matCellDef="let row">{{row.unit_material[0].mat_unit}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Price per Unit</th>
+            <td mat-cell *matCellDef="let row">{{row.price_unit | currency:'Rs.'}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="site">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Allocated Warehouse</th>
+            <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Delete Material Type </th>
+            <td mat-cell *matCellDef="let element; let i = index;">
+             <!--Remove material Button-->
+              <button mat-icon-button color="warn" (click)="deleteMaterialType(i,element)"><mat-icon>delete_outline</mat-icon></button>
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+              Loading Data...
+            </mat-footer-cell>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+        </table>
+      
+        <mat-paginator #paginator
+            [length]="dataSourceMatTypes?.data.length"
+            [pageIndex]="0"
+            [pageSize]="50"
+            [pageSizeOptions]="[25, 50, 100, 250]">
+        </mat-paginator>
+      
+      
+    
+    </div></mat-card><br><br><br><br>
+
+    <mat-card>
+            
+            
+       
+           
+             <!-- from here table -->
+             <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add</button>&nbsp;&nbsp;
+             <!-- <button class="remove-btn" (click)="onTransfer()" mat-raised-button color="primary"><mat-icon>outbond</mat-icon>&nbsp;Transit Material</button>&nbsp;&nbsp;&nbsp; -->
+             <button class="remove-btn" (click)="printTable()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>
+             <!-- Select site -->
+            <form [formGroup]=this.forSelectMonth>
+              <mat-form-field>
+                <mat-label>Select Month</mat-label>
+                <mat-select [(value)]="selected" formControlName="select_month" (selectionChange)="onMonthChange()" >
+                  <mat-option value="January">January</mat-option>
+                  <mat-option value="February">February</mat-option>
+                  <mat-option value="March">March</mat-option>
+                  <mat-option value="April">April</mat-option>
+                  <mat-option value="May">May</mat-option>
+                  <mat-option value="June">June</mat-option>
+                  <mat-option value="July">July</mat-option>
+                  <mat-option value="August">August</mat-option>
+                  <mat-option value="September">September</mat-option>
+                  <mat-option value="October">October</mat-option>
+                  <mat-option value="November">November</mat-option>
+                  <mat-option value="December">December</mat-option>
+                  
+                </mat-select>
+               
+              </mat-form-field> <br><br>
+            </form>
+            
+             <table mat-table [dataSource]="dataSourceMatDates" class="mat-elevation-z8">
+              <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumnsMat">
+                <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                <td mat-cell *matCellDef="let element" (click)="infoDateDialog(element)"> {{element[column]}} </td>
+                <td mat-footer-cell *matFooterCellDef><strong>{{getMaterialBalance(column)}}</strong></td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Delete Material Type </th>
+            <td mat-cell *matCellDef="let element; let i = index;">
+             <!--Remove material Button-->
+              <button mat-icon-button color="warn" (click)="deleteMaterialType(i,element)"><mat-icon>delete_outline</mat-icon></button>
+            </td>
+          </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsMat"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsMat;"></tr>
+              <tr mat-footer-row *matFooterRowDef="displayedColumnsMat; sticky: true"></tr>
+      
+            </table>
+          
+        </mat-card>
+        </mat-accordion>
+    </mat-tab>
+    <mat-tab label="Equipment">
+      <mat-accordion>
+        
+          
+          
+        <mat-card>
+           
+          <div class="eqrecbuttoms">
+            <h1 align="center">Transferred Equipments</h1>
+            <button class="remove-btn" (click)="printTableEQ()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
+            <mat-form-field class="input-name" appearance="fill">
+            <mat-label>Search Here</mat-label>  
+            <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
+            <button mat-button matSuffix mat-icon-button aria-label="clear"*ngIf="searchKey" (click)="onSearchClear()"></button>
+            </mat-form-field><br>
+          </div><br><br>
+         
+        
+        
+          <div class="mat-elevation-z8">
+            <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceEQRecords">
+          
+         
+              <!-- Id Column -->
+            
+              <ng-container matColumnDef="site">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Site</th>
+                <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+              </ng-container>
+          
+              
+              <ng-container matColumnDef="hoe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hoe</th>
+                <td mat-cell *matCellDef="let row">{{row.Hoe}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="axe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Axe</th>
+                <td mat-cell *matCellDef="let row">{{row.Axe}}</td>
+              </ng-container>
+          
+              <ng-container matColumnDef="ball_hammer">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ball Hammer</th>
+                <td mat-cell *matCellDef="let row">{{row.Ball_Hammer}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="chisel">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Chisel</th>
+                <td mat-cell *matCellDef="let row">{{row.Chisel}}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="dot">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                <td mat-cell *matCellDef="let element; let i = index;">{{getEQRECDate(element)}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="drill">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Drill</th>
+                <td mat-cell *matCellDef="let row">{{row.Drill}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="grinders">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Grinders</th>
+                <td mat-cell *matCellDef="let row">{{row.Grinders}}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="Hacksaw_Metal">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hacksaw Metal</th>
+                <td mat-cell *matCellDef="let row">{{row.Hacksaw_Metal}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="hammer">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hammer</th>
+                <td mat-cell *matCellDef="let row">{{row.Hammer}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="handsaw">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Handsaw</th>
+                <td mat-cell *matCellDef="let row">{{row.Handsaw}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="pan">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Pan</th>
+                <td mat-cell *matCellDef="let row">{{row.Pan}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Mason_Handtool">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mason Handtool</th>
+                <td mat-cell *matCellDef="let row">{{row.Mason_Handtool}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="safty_glass">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Safty Glass</th>
+                <td mat-cell *matCellDef="let row">{{row.Safty_Glass}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="safty_gloves">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Safty_Gloves</th>
+                <td mat-cell *matCellDef="let row">{{row.Safty_Gloves}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Safty_Helmet">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Safty_Helmet</th>
+                <td mat-cell *matCellDef="let row">{{row.Safty_Helmet}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Screwdrivers">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Screwdrivers</th>
+                <td mat-cell *matCellDef="let row">{{row.Screwdrivers}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Shovel">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Shovel</th>
+                <td mat-cell *matCellDef="let row">{{row.Shovel}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Spirit_Level">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Spirit Level</th>
+                <td mat-cell *matCellDef="let row">{{row.Spirit_Level}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Tape_Measures">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Tape Measures</th>
+                <td mat-cell *matCellDef="let row">{{row.Tape_Measures}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Wrench">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Wrench</th>
+                <td mat-cell *matCellDef="let row">{{row.Wrench}}</td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Delete</th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                 <!--Remove material Button-->
+                 <button mat-icon-button color="warn" (click)="deleteEQRec(i,element)"><mat-icon>delete_outline</mat-icon></button>
+                </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                  Loading Data...
+                </mat-footer-cell>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayerColomnsEQREC"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayerColomnsEQREC;"></tr>
+              <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+            </table>
+          
+            <mat-paginator #paginator
+                [length]="dataSourceEQRecords?.data.length"
+                [pageIndex]="0"
+                [pageSize]="50"
+                [pageSizeOptions]="[25, 50, 100, 250]">
+            </mat-paginator>
+          
+          
+        
+        </div>
+      </mat-card>
+       <br>
+ 
+      </mat-accordion>
+    </mat-tab>
+    <mat-tab label="Vehicle">
+      <mat-accordian>
+        <h1 align="center">Vehicle and Machinary Management</h1>
+        <mat-card id="print_table">
+          <div class="crud-btn">
+            <button  mat-raised-button (click)="onAddVH()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
+            <button class="remove-btn" (click)="printTableVH()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
+            <button class="remove-btn" (click)="openVHTransfer()" mat-raised-button color="primary"><mat-icon>outbond</mat-icon>&nbsp;Transfer Vehicle</button>          
+        </div><br><br>
+        <div class="employee-tbl">
+          <!-- <p *ngIf="AllEQData.length <= 0" class="no-data">There is no Material added yet!</p> -->
+        
+        
+        </div>
+        
+          <div class="mat-elevation-z8">
+            <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceVH">
+          
+         
+              <!-- Id Column -->
+              <ng-container matColumnDef="reg_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Reg No</th>
+                <td mat-cell *matCellDef="let row">{{row.reg_id}}</td>
+              </ng-container>
+          
+              <ng-container matColumnDef="vh_type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Vehicle or Machine Type</th>
+                <td mat-cell *matCellDef="let row">{{row.vh_type[0].vh_type}}</td>
+              </ng-container>
+          
+              
+              <ng-container matColumnDef="brand">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Brand</th>
+                <td mat-cell *matCellDef="let row">{{row.brand}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="model">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Model</th>
+                <td mat-cell *matCellDef="let row">{{row.vh_model}}</td>
+              </ng-container>
+          
+              <ng-container matColumnDef="site">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Allocated Site</th>
+                <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="driver">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Driver or Operator</th>
+                <td mat-cell *matCellDef="let row">{{row.driver[0].name_in}}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="rate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate per Km/Hr</th>
+                <td mat-cell *matCellDef="let row">{{row.unit_rate | currency:'Rs.'}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                  <button mat-icon-button color="primary" (click)="openRunningChart(i,element)"><mat-icon>assessment</mat-icon></button>  
+                 <!-- <button mat-icon-button color="primary" (click)="updateVH(i,element)"><mat-icon>launch</mat-icon></button> 
+                 <button mat-icon-button color="warn" (click)="deleteVH(i,element)"><mat-icon>delete_outline</mat-icon></button> -->
+                </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                  Loading Data...
+                </mat-footer-cell>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsVH"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsVH;"></tr>
+              <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+            </table>
+          
+            <mat-paginator #paginator
+                [length]="dataSourceVH?.data.length"
+                [pageIndex]="0"
+                [pageSize]="50"
+                [pageSizeOptions]="[25, 50, 100, 250]">
+            </mat-paginator>
+          
+          
+        
+        </div></mat-card>
+       
+      </mat-accordian>
+    </mat-tab>
+    
+  </mat-tab-group>
+     <!--Search Text-->
+     

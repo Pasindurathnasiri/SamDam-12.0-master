@@ -1,0 +1,12 @@
+<h1 align="center">Accounting Department</h1>
+<br><br><br>
+<mat-list>
+    <mat-list-item *ngFor="let site of allSiteData; last as last"  >
+       <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
+        <h4 mat-line>{{site.site_name}}</h4>
+        <p mat-line class="demo-2"> {{site.place}} </p>
+        <button mat-raised-button color="primary" [routerLink]="['/selected-acc-site-cb',site._id]">Site Cashbook</button>&nbsp;
+           
+        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+     </mat-list-item>
+  </mat-list>

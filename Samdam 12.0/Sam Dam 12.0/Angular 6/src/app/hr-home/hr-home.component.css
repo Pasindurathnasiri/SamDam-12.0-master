@@ -1,0 +1,22 @@
+.hq-btn{
+    padding-top: 5mm;
+    padding-bottom: 5mm;
+    padding-left: 3.5cm;
+    padding-right: 3.5cm;
+    font-size: 15pt;
+}
+
+.site-btn{
+    padding-top: 5mm;
+    padding-bottom: 5mm;
+    padding-left: 2.8cm;
+    padding-right: 2.8cm;
+    font-size: 15pt;
+}
+
+.bg{
+    background-size: cover;
+    height: 75cm;
+   
+
+}

@@ -1,0 +1,141 @@
+  <mat-card class="card"><h1 align="center"> Add Employee</h1>
+
+     <form [formGroup]="this.addGroup" (ngSubmit)="onSubmit()"> 
+  <mat-form-field class="example-full-width">
+    <mat-label>Employee ID</mat-label>
+    <input matInput #message formControlName="emp_id" maxlength="5" placeholder="Ex. 12345" name="emp_id"> 
+    <mat-hint align="start"><strong>Don't Add Charachters</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 5</mat-hint>
+  </mat-form-field><br><br><br>
+
+      <mat-form-field class="name-with-in">
+        <mat-label>Name with Initial</mat-label>
+        <input matInput #message formControlName="name_in" maxlength="256" placeholder="Ex. RANASINGHE A.P.N.M" name="name_in">
+        <mat-hint align="start"><strong>Use Only Block Letters</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field> <br>
+  
+      <mat-form-field class="name-full">
+        <mat-label>Full name</mat-label>
+        <input matInput #message formControlName="name_full" maxlength="300" placeholder="Ex. ABEYSINGHE ARACHCHILAGE NADUN RANASINGHE " name="name_full">
+        <mat-hint align="start"><strong>Use Only Block Letters</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+      </mat-form-field><br>
+
+      <mat-form-field class="input-nic" >
+        <mat-label>NIC</mat-label>
+        <input matInput maxlength="11" name="nic" formControlName="nic"> 
+      </mat-form-field><br><br>
+ <!-- DOB selection-->
+
+ <mat-form-field>
+  <mat-label>Date of Birth</mat-label>
+  <input matInput [matDatepicker]="dobpicker" formControlName="dob">
+  <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+  <mat-datepicker #dobpicker></mat-datepicker>
+</mat-form-field><br><br>
+
+<!--Recruited Date-->
+
+<mat-form-field>
+  <mat-label>Recruited Date</mat-label>
+  <input matInput [matDatepicker]="dorpicker" formControlName="dor">
+  <mat-datepicker-toggle matSuffix [for]="dorpicker"></mat-datepicker-toggle>
+  <mat-datepicker #dorpicker></mat-datepicker>
+</mat-form-field><br><br>
+
+
+       <!-- here has to be a Gender selection
+  -->
+  <mat-radio-group aria-label="Select Gender" formControlName="gender" color="primary">
+    <mat-radio-button value="Male">Male</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <mat-radio-button value="Female">Female</mat-radio-button>
+  </mat-radio-group>
+  <br><br>
+  <p>
+    <mat-form-field class="address" >
+      <mat-label>Address 1</mat-label>
+      <textarea matInput placeholder="Ex. 100 Main St" formControlName="address_1" name="address_1"></textarea>
+    </mat-form-field><br><br>
+    <mat-form-field class="example-full-width" >
+      <mat-label>Address 2</mat-label>
+      <textarea matInput placeholder="City" formControlName="address_2" name="address_2"></textarea>
+    </mat-form-field>
+  </p>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Telephone</mat-label>
+    <span matPrefix>+94 &nbsp;</span>
+    <input type="tel" maxlength="9" name="tp_no" formControlName="tp_no" matInput placeholder="77-123-4567">
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field><br>
+
+  <mat-form-field class="input-epf" >
+    <mat-label>EPF No.</mat-label>
+    <input matInput maxlength="6" name="epf" formControlName="epf">
+  </mat-form-field><br>
+  
+  <mat-form-field class="input-etf" >
+    <mat-label>ETF No.</mat-label>
+
+    <input matInput maxlength="6" name="etf" formControlName="etf">
+  </mat-form-field><br>
+
+  <mat-form-field class="work-place">
+    <mat-label>Current Work Place or Site</mat-label>
+    <mat-select [(value)]="selectedSite" formControlName="site" required>
+      <mat-option >--</mat-option>
+      <mat-option [value]="animal" *ngFor="let animal of animals">
+        {{animal.site_name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="animalControl.hasError('required')">Please choose a Work Place</mat-error>
+   </mat-form-field>
+  <!-- Combo box for Current Site--> <br><br> 
+  <mat-form-field>
+    <mat-label>Designation</mat-label>
+    <mat-select [(value)]="selectedDesignation" formControlName="designation" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let site of sites" [value]="site">
+        {{site.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="siteControl.hasError('required')">Please choose Designation</mat-error>
+    <mat-hint>{{siteControl.value?.sound}}</mat-hint>
+  </mat-form-field> <br><br>
+ 
+  <!-- Sallary-->
+  
+  <mat-form-field class="example-full-width">
+    <mat-label>Payement per Day</mat-label>
+    <span matPrefix>Rs: &nbsp;</span>
+    <input type="number" maxlength="9" name="day_pay" formControlName="day_pay" matInput placeholder="Payement Per Day ">
+    
+  </mat-form-field>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<mat-form-field class="example-full-width">
+  <mat-label>OT Payment Per Hour</mat-label>
+  <span matPrefix>Rs: &nbsp;</span>
+  <input type="number" maxlength="9" name="ot_pay" formControlName="ot_pay" matInput placeholder="OT Payement Per Hour ">
+  
+</mat-form-field><br>
+  
+  <mat-form-field class="remarks">
+    <mat-label>Remarks</mat-label>
+    <textarea matInput name="remarks" placeholder="Ex. Add remarks & Experiance" formControlName="remarks"></textarea>
+  </mat-form-field><br>
+
+  <button type="submit" mat-raised-button color="primary">Add</button>
+</form> 
+</mat-card>
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>

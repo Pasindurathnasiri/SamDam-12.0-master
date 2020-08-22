@@ -1,0 +1,67 @@
+<mat-card>
+    <h1 align="center">Add Cheque Transaction</h1>
+
+    <form [formGroup]="this.addCHTransactionGroup"> 
+      
+    
+        
+    <mat-form-field class="example-full-width">
+      <mat-label>Cheque No:</mat-label>
+      <input matInput #message formControlName="chtr_id" maxlength="30" name="chtr_id" required> 
+      </mat-form-field><br><br>
+        
+       <mat-form-field>
+        <mat-label>Issued Date</mat-label>
+        <input matInput [matDatepicker]="doipicker" formControlName="doi" required>
+        <mat-datepicker-toggle matSuffix [for]="doipicker"></mat-datepicker-toggle>
+        <mat-datepicker #doipicker></mat-datepicker>
+      </mat-form-field><br><br>
+        
+      
+      <mat-form-field>
+        <mat-label>Transaction Date</mat-label>
+        <input matInput [matDatepicker]="dotpicker" formControlName="dot" required>
+        <mat-datepicker-toggle matSuffix [for]="dotpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dotpicker></mat-datepicker>
+      </mat-form-field><br><br>
+        
+
+      <mat-form-field>
+        <mat-label>Select Cheque Type</mat-label>
+        <mat-select [(value)]="selectedType" formControlName="type" required>
+          <mat-option value="Recieved">Recieved</mat-option>
+          <mat-option value="Paid">Paid</mat-option>
+         
+        </mat-select>
+    </mat-form-field> <br><br>
+        
+        <mat-form-field class="example-full-width">
+          <mat-label>Description</mat-label>
+          <input matInput #message formControlName="description" maxlength="300" name="description" required> 
+            </mat-form-field><br><br><br>
+      
+
+            <mat-form-field class="bank_credit">
+              <mat-label>Bank Credit amount</mat-label>
+              <input matInput #message formControlName="bank_credit" maxlength="25"  name="bank_credit" >
+                 </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                 
+            <mat-form-field class="bank_debit">
+                <mat-label>Bank Debit amount</mat-label>
+                <input matInput #message formControlName="bank_debit" maxlength="25"  name="bank_debit" >
+           </mat-form-field> <br>
+
+            <mat-form-field class="rec_or_pay">
+            <mat-label>Reciever or Payer</mat-label>
+            <input matInput #message formControlName="rec_or_pay" maxlength="50"  >
+            </mat-form-field> <br>
+
+
+   
+        <button (click)=onAddCHTransaction() mat-raised-button color="primary">Add</button>&nbsp;&nbsp;
+        <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+
+      </form>
+
+</mat-card>

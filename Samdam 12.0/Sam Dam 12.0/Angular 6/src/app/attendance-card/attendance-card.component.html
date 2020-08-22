@@ -1,0 +1,103 @@
+<div class="card-w">
+<h1 align="center">Attendance Card</h1>
+<form [formGroup]=this.forSelectMonth>
+  <mat-form-field>
+    <mat-label>Select Month</mat-label>
+    <mat-select formControlName="select_month" (selectionChange)="onMonthChange()" >
+      <mat-option value="January">January</mat-option>
+      <mat-option value="February">February</mat-option>
+      <mat-option value="March">March</mat-option>
+      <mat-option value="April">April</mat-option>
+      <mat-option value="May">May</mat-option>
+      <mat-option value="June">June</mat-option>
+      <mat-option value="July">July</mat-option>
+      <mat-option value="August">August</mat-option>
+      <mat-option value="September">September</mat-option>
+      <mat-option value="October">October</mat-option>
+      <mat-option value="November">November</mat-option>
+      <mat-option value="December">December</mat-option>
+      
+    </mat-select>
+   
+  </mat-form-field> <br><br>
+</form>
+<form [formGroup]="this.dateForm" #resetaddGroup="ngForm">
+    <!--Date picker, state, ot -->
+    <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="dobpicker" formControlName="datepicker">
+        <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dobpicker></mat-datepicker>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <mat-form-field class="ot" >
+        <mat-label>OT for Day</mat-label>
+        <input matInput maxlength="2" name="ot" formControlName="ot_on_day"> 
+      </mat-form-field><br><br>
+
+    <!--Buttons to add or delete attendance-->
+    <button  mat-raised-button (click)="onPresent()" color="primary">Present</button>&nbsp;&nbsp;
+    <button  mat-raised-button (click)="onAbsent()" color="primary">Absent</button>
+     
+</form>
+
+
+<!---->
+<div class="employee-tbl">
+ <!-- <p *ngIf="AllAttendanceData.length <= 0" class="no-data">There is no employee added yet!</p>
+-->
+ 
+
+  <div class="mat-elevation-z8">
+    <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSource">
+  
+ 
+      <!-- Id Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let row">{{row.date}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="site">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Site</th>
+        <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+      </ng-container>
+        
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let row"></td>
+      </ng-container>
+  
+      <ng-container matColumnDef="controls">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+          <button mat-icon-button color="warn" (click)="onRemoveAttendance(i,element)" class="push-right"><mat-icon>remove_circle_outline</mat-icon></button>
+          </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ot_on_day">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>OT</th>
+        <td mat-cell *matCellDef="let row">{{row.ot_on_day}}</td>
+      </ng-container>
+
+          
+  
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading Data...
+        </mat-footer-cell>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+    </table>
+  
+    <mat-paginator #paginator
+        [length]="dataSource?.data.length"
+        [pageIndex]="0"
+        [pageSize]="50"
+        [pageSizeOptions]="[25, 50, 100, 250]">
+    </mat-paginator>
+  </div>
+</div>

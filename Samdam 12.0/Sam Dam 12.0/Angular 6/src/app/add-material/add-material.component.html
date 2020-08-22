@@ -1,0 +1,70 @@
+<mat-card class="card">
+    <h1>Add New Material to Stock</h1>
+    <form [formGroup]="this.addMatGroup" (ngSubmit)="onSubmit()"> 
+        <mat-form-field class="example-full-width">
+          <mat-label>Material ID</mat-label>
+          <input matInput #message formControlName="mat_id" maxlength="3" placeholder="Ex. 12345" name="emp_id"> 
+          <mat-hint align="start"><strong>Don't Add Charachters</strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 5</mat-hint>
+        </mat-form-field><br><br><br>
+      
+        
+        <mat-form-field class="mat-type">
+            <mat-label>Type of Material</mat-label>
+            <mat-select [(value)]="selectedMat" formControlName="type_material" required>
+              <mat-option >--</mat-option>
+              <mat-option [value]="mat" *ngFor="let mat of mats">
+                {{mat.mat}}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose a Work Place</mat-error> -->
+           </mat-form-field><br><br>
+
+            <mat-form-field class="mat_name">
+              <mat-label>Name of Material</mat-label>
+              <input matInput #message formControlName="mat_name" maxlength="25" placeholder="Rainforcement Steel Bars 16 inch" name="mat_name">
+              <mat-hint align="end">{{message.value.length}} / 25</mat-hint>
+            </mat-form-field> <br>
+        
+            <mat-form-field class="buyer">
+              <mat-label>Name of Buyer</mat-label>
+              <input matInput #message formControlName="buyer" maxlength="300" placeholder="ABC Hardware " name="buyer">
+              <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+            </mat-form-field><br>
+      
+      
+       <!-- added date-->
+      
+       <mat-form-field>
+        <mat-label>Date of Material Added</mat-label>
+        <input matInput [matDatepicker]="dompicker" formControlName="dom">
+        <mat-datepicker-toggle matSuffix [for]="dompicker"></mat-datepicker-toggle>
+        <mat-datepicker #dompicker></mat-datepicker>
+      </mat-form-field><br><br>
+      
+      <mat-form-field class="mat-unit">
+        <mat-label>Unit of Material</mat-label>
+        <mat-select [(value)]="selectedUnit" formControlName="unit_material" required>
+          <mat-option >--</mat-option>
+          <mat-option [value]="unit" *ngFor="let unit of units">
+            {{unit.mat_unit}}
+          </mat-option>
+        </mat-select>
+        <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose a Work Place</mat-error> -->
+       </mat-form-field>   <br><br>
+      
+      
+
+        
+        <mat-form-field class="price_unit">
+          <mat-label>Price Per Unit</mat-label>
+          <span matPrefix>Rs: &nbsp;</span>
+          <input type="number" maxlength="9" name="price_unit" formControlName="price_unit" matInput placeholder=" ">
+          
+        </mat-form-field>
+      
+<br><br><br>
+      
+        <button type="submit" mat-raised-button color="primary">Add</button>
+      </form> 
+</mat-card>

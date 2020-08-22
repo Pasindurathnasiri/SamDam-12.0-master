@@ -1,0 +1,45 @@
+<br>
+<h1 align="center">Update BOQ Record</h1>
+<br><br>
+<mat-card>
+    <form [formGroup]="this.updateboqRecordForm" #resetaddGroup="ngForm">
+        
+          <mat-form-field class="example-full-width">
+            <mat-label>Record No:</mat-label>
+            <input matInput #message formControlName="rec_no" maxlength="3"  name="length" >
+       </mat-form-field> <br>
+    <p>
+        <mat-form-field class="address" >
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Ex. Escavations" formControlName="description" name="description"></textarea>
+      </mat-form-field><br><br>
+    </p>
+        
+        <mat-form-field class="mat-unit">
+            <mat-label>Unit</mat-label>
+            <mat-select [(value)]="selectedUnit" formControlName="unit" required>
+              <mat-option >--</mat-option>
+              <mat-option [value]="unit" *ngFor="let unit of units">
+                {{unit.mat_unit}}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose a Work Place</mat-error> -->
+           </mat-form-field>   <br><br>
+          
+    
+        <mat-form-field class="example-full-width">
+            <mat-label>Rate per Unit</mat-label>
+            <input matInput #message formControlName="rate" maxlength="25" placeholder="Rate" >
+            </mat-form-field> <br>
+       
+        <mat-form-field class="example-full-width">
+            <mat-label>Quantity</mat-label>
+            <input matInput #message formControlName="quantity" maxlength="25" placeholder="Quantity" >
+            </mat-form-field> <br><br><br><br>
+    
+        <!--Buttons to add or delete attendance-->
+        <button  mat-raised-button (click)="onUpdateBOQRec()" color="primary">Save</button>&nbsp;&nbsp;
+        <button  mat-raised-button (click)="onCancel()" color="warn">Cancel</button>
+         
+    </form>
+</mat-card>

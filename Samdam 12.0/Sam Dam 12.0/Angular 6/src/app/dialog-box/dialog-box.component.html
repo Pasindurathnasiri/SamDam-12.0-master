@@ -1,0 +1,56 @@
+<h1 mat-dialog-title><strong>{{action}}</strong> Material Record</h1>
+
+
+
+<mat-tab-group animationDuration="500ms">
+  <!-- Material recieved tab -->
+  <mat-tab label="Material Receieved">
+      <mat-accordion>
+<!-- Date picker -->
+<form [formGroup]="this.addMaterialDataForm">
+  <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="dorpicker" formControlName="dor">
+      <mat-datepicker-toggle matSuffix [for]="dorpicker"></mat-datepicker-toggle>
+      <mat-datepicker #dorpicker></mat-datepicker>
+    </mat-form-field><br><br>
+  <!-- Material Types -->
+  <section *ngFor="let material_R of materials_R; let i=index;">
+  <mat-form-field class="input-nic" >
+      <mat-label>{{material_R}}</mat-label>
+      <input matInput name="material_{{i}}" formControlName="{{material_R}}" > 
+  </mat-form-field><br><br>
+  </section>
+  <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+  </form>
+
+      </mat-accordion>
+  </mat-tab>
+  <mat-tab label="Material Consumed">
+    <mat-accordion>
+
+<!-- Date picker -->
+<form [formGroup]="this.addMaterialDataForm">
+  <!-- <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="dorpicker" formControlName="dor">
+      <mat-datepicker-toggle matSuffix [for]="dorpicker"></mat-datepicker-toggle>
+      <mat-datepicker #dorpicker></mat-datepicker>
+    </mat-form-field><br><br> -->
+  <!-- Material Types -->
+  <section *ngFor="let material of materials; let i=index;">
+  <mat-form-field class="input-nic" >
+      <mat-label>{{material}}</mat-label>
+      <input matInput name="material_{{i}}" formControlName="{{material}}" > 
+  </mat-form-field><br><br>
+  </section>
+  <button (click)="addMaterialData()"  mat-raised-button color="primary">Add</button>&nbsp;&nbsp;
+  <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+  </form>
+    </mat-accordion>
+</mat-tab>
+
+</mat-tab-group>
+
+
+  
