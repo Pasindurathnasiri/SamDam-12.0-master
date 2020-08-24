@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable,MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from '../shared/employee.service';
 import { Router,ActivatedRoute } from '@angular/router';
+
 import { Employee } from '../shared/employee.model';
 import { MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component'
@@ -15,7 +16,7 @@ import { tick } from '@angular/core/testing';
   styleUrls: ['./hr-selected-site-home.component.css']
 })
 export class HrSelectedSiteHomeComponent implements OnInit {
-
+  searchKey: string; 
   allSiteEmployeeData:any =[];
   dataSource: MatTableDataSource<Employee>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,10 +40,32 @@ export class HrSelectedSiteHomeComponent implements OnInit {
 
    }
 
+   onSearchClear(){
+    this.searchKey ='';
+    this.applyFilter();
+  }
+
   ngOnInit(): void {
   this.dataSource = new MatTableDataSource<Employee>();
   this.dataSource.sort = this.sort;
   this.dataSource.paginator = this.paginator;
   }
+
+
+  
+onAdd(){
+  const adddialogConfig =new MatDialogConfig();
+  adddialogConfig.disableClose=false;
+  adddialogConfig.autoFocus=true;
+  adddialogConfig.width="75%";
+  adddialogConfig.height="100%";
+  this.dialog.open(AddEmployeeComponent,adddialogConfig)
+}
+  
+  applyFilter(){
+    
+    return this.dataSource.filter= this.searchKey.trim().toLowerCase();
+  }
+
 
 }

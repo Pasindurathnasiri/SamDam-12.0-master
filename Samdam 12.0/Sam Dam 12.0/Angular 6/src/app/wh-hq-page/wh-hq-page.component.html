@@ -19,22 +19,16 @@
               </mat-expansion-panel-header>
              
               <!-- Material type add and delete and update table -->
-              <!--Search Text-->
-    <mat-form-field class="input-name" appearance="fill">
-    <mat-label>Search Here</mat-label>  
-    <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
-    <button mat-button matSuffix mat-icon-button aria-label="clear"*ngIf="searchKey" (click)="onSearchClear()"></button>
-    </mat-form-field>
-    <!--  Search button-->
-    
-    <button mat-mini-fab color="primary"  aria-label="Example icon-button with a icon">
-    <mat-icon >search</mat-icon>
-    </button><br>
+ 
+
     
     <div class="crud-btn">
         <button  mat-raised-button (click)="onAdd()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
-        <button class="remove-btn" (click)="printTable()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>
-    
+        <mat-form-field class="input-name" appearance="fill">
+          <mat-label>Search Here</mat-label>  
+          <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFiltermattype()">
+          <button mat-button matSuffix mat-icon-button aria-label="clear"*ngIf="searchKey" (click)="onSearchClear()"></button>
+          </mat-form-field>
     </div><br><br>
     <!--Employee Table-->
     <mat-card id="print_table">
@@ -155,7 +149,7 @@
               </mat-form-field> <br><br>
             </form>
             
-             <table mat-table [dataSource]="dataSourceMatDates" class="mat-elevation-z8">
+             <table mat-table [dataSource]="dataSourceMatDates" class="mat-elevation-z8" id="print_table">
               <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumnsMat">
                 <th mat-header-cell *matHeaderCellDef> {{column}} </th>
                 <td mat-cell *matCellDef="let element" (click)="infoDateDialog(element)"> {{element[column]}} </td>
@@ -194,7 +188,6 @@
             <h1 align="center">All Equipment</h1><br><br>
             <div class="crud-btn">
               <button  mat-raised-button (click)="onAddEQ()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
-              <button class="remove-btn" (click)="printTableEQ()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
               <button class="remove-btn" (click)="openTransfer()" mat-raised-button color="primary"><mat-icon>outbond</mat-icon>&nbsp;Transfer Equipment</button>          
           </div><br><br>
           <div class="employee-tbl">
@@ -288,10 +281,9 @@
            
               <div class="eqrecbuttoms">
                 <h1 align="center">Transferred Equipments</h1>
-                <button class="remove-btn" (click)="printTableEQ()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
                 <mat-form-field class="input-name" appearance="fill">
                 <mat-label>Search Here</mat-label>  
-                <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()">
+                <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilterRec()">
                 <button mat-button matSuffix mat-icon-button aria-label="clear"*ngIf="searchKey" (click)="onSearchClear()"></button>
                 </mat-form-field><br>
               </div><br><br>
@@ -299,7 +291,7 @@
             
             
               <div class="mat-elevation-z8">
-                <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceEQRecords">
+                <table mat-table class="full-width-table" id="table-mat-rec" matSort aria-label="Elements" [dataSource]="dataSourceEQRecords">
               
              
                   <!-- Id Column -->
@@ -462,7 +454,7 @@
         </div>
         
           <div class="mat-elevation-z8">
-            <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceVH">
+            <table mat-table class="full-width-table" id="tableVH" matSort aria-label="Elements" [dataSource]="dataSourceVH">
           
          
               <!-- Id Column -->

@@ -119,9 +119,10 @@ export class EbMonthlyReportsComponent implements OnInit {
           s_index=s_index+1
         }
       }
+      
       this.chartdata_attendance[i] =[`${site_index}`,s_index];
     }
-    //console.log(this.chartdata_attendance);
+    console.log(this.chartdata_attendance);
     return this.chartdata_attendance;
   }
 
@@ -138,7 +139,7 @@ export class EbMonthlyReportsComponent implements OnInit {
       }
       this.chartdata_accounting[i] =[`${site_index}`,acc_index];
     }
-    //console.log(this.chartdata_attendance);
+    console.log(this.chartdata_accounting);
     return this.chartdata_accounting;
   }
 

@@ -45,10 +45,13 @@
     </form>
 </mat-card>
 <br>
-<mat-card>
-    <h1 align="center">Bill of Quantity (BOQ) {{getSiteName()}}</h1>
+<mat-card id="print_table">
+  <button  mat-raised-button (click)="print()" color="primary">Print</button>
+    
+    
 <br><br>
 <div class="mat-elevation-z8">
+  <h1 align="center">Bill of Quantity (BOQ) {{getSiteName()}}</h1>
     <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceBOQ">
   
  

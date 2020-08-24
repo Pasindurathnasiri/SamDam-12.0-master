@@ -1,16 +1,5 @@
 <h1 align="center" style="font-size: 25pt;" class="mat-h1">Empolyee Management</h1>
-<mat-form-field class="option-search"  appearance="fill">
-    <mat-label>Search By: </mat-label>
-    <mat-select>
-      <mat-option value="option-empid">Employee Id</mat-option>
-      <mat-option value="option-name">Name</mat-option>
-      <mat-option value="option-NIC">NIC</mat-option>
-      <mat-option value="option-NIC">Site</mat-option>
-      
-    </mat-select>
-   <br>
 
-</mat-form-field>
 <!--Search Text-->
 <mat-form-field class="input-name" appearance="fill">
 <mat-label>Search Here</mat-label>  
@@ -19,15 +8,11 @@
 </mat-form-field>
 <!--  Search button-->
 
-<button mat-mini-fab color="primary"  aria-label="Example icon-button with a icon">
-<mat-icon >search</mat-icon>
-</button><br>
+
 
 <div class="crud-btn">
     <button  mat-raised-button (click)="onAdd()" color="primary">Add</button>
-    <button class="remove-btn" mat-raised-button color="primary">Transfer</button>
-    <button class="remove-btn" mat-raised-button color="primary">Add Remarks</button>
-
+   
 </div><br><br>
 <!--Employee Table-->
 <div class="employee-tbl">

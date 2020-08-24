@@ -1,9 +1,9 @@
-<h1 align="center">Cheque Transaction Book</h1>
+
 
 
 
     
-<mat-card id="print_table">
+<mat-card >
     <div class="crud-btn">
       <button  mat-raised-button (click)="onAddCHTransaction()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
       <button class="remove-btn" (click)="printTableCH()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
@@ -13,8 +13,8 @@
   
   
   </div>
- <mat-card> 
-    <div class="mat-elevation-z8">
+ <mat-card id="print_table"> 
+    <div class="mat-elevation-z8"><h1 align="center">Cheque Transaction Book</h1>
       <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceCH">
     
         <ng-container matColumnDef="chtr_id">

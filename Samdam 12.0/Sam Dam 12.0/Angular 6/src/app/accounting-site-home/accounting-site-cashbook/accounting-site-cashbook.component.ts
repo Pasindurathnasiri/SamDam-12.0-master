@@ -10,6 +10,8 @@ import {SiteService} from '../../shared/site.service';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { MatTableDataSource } from '@angular/material/table';
 import {UpdateCashbookComponent} from '../../cashbook-hq/update-cashbook/update-cashbook.component';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-accounting-site-cashbook',
@@ -94,4 +96,17 @@ export class AccountingSiteCashbookComponent implements OnInit {
   }
 
 
+  print(){
+    var element = document.getElementById('print_table')
+
+   html2canvas(element).then((canvas)=>{
+     
+
+     var imgData = canvas.toDataURL('image/png')
+     var doc = new jspdf()
+     var imgHeight = canvas.height *200 /canvas.width;
+     doc.addImage(imgData,0,10,200,imgHeight)
+     doc.save("site_cashbook.pdf")
+   })
+  }
 }

@@ -10,6 +10,8 @@ import { MatSort } from '@angular/material/sort';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { UpdateBoqRecordComponent } from '../update-boq-record/update-boq-record.component'
 import { from } from 'rxjs';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 
 var site_hashedid;
@@ -128,4 +130,19 @@ export class QsSiteCostsheetComponent implements OnInit {
     }
     window.alert("BOQ Record Deleted Succeccfully");
   }
+
+  print(){
+    var element = document.getElementById('print_table')
+
+   html2canvas(element).then((canvas)=>{
+     console.log(canvas);
+
+     var imgData = canvas.toDataURL('image/png')
+     var doc = new jspdf()
+     var imgHeight = canvas.height *235 /canvas.width;
+     doc.addImage(imgData,0,0,235,imgHeight)
+     doc.save("BoQRecord.pdf")
+   })
+  }
+
 }

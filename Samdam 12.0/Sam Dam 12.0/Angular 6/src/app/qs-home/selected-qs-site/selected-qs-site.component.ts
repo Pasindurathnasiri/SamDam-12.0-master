@@ -11,6 +11,8 @@ import {UpdateSiteTaskComponent} from '../update-site-task/update-site-task.comp
 import {AddSiteTaskComponent} from '../add-site-task/add-site-task.component';
 import {DailyWorksComponent} from '../daily-works/daily-works.component';
 import { da, fi } from 'date-fns/locale';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-selected-qs-site',
@@ -59,6 +61,10 @@ export class SelectedQsSiteComponent implements OnInit {
     this._bottomSheet.open(UpdateSiteTaskComponent,{panelClass:'custom-width',data:e})
   
   }
+
+  getSite(){
+    return this.AllSiteData.site_name;
+  }
  
   getProgress(e){
     return parseInt(e.progress);
@@ -75,5 +81,19 @@ export class SelectedQsSiteComponent implements OnInit {
 
   openDialyRecord(e){
     this._bottomSheet.open(DailyWorksComponent,{panelClass:'custom-width',data:e})
+  }
+
+  print(){
+    var element = document.getElementById('print_table')
+
+    html2canvas(element).then((canvas)=>{
+      console.log(canvas);
+ 
+      var imgData = canvas.toDataURL('image/png')
+      var doc = new jspdf()
+      var imgHeight = canvas.height *235 /canvas.width;
+      doc.addImage(imgData,0,0,235,imgHeight)
+      doc.save("QSTasks.pdf")
+    })
   }
 }

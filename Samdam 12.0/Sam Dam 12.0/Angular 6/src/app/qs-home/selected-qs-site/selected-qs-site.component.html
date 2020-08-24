@@ -1,8 +1,10 @@
-<br><h1 align="center">Quantity Survaying Department Task Management</h1><br><br>
 
-<button  mat-raised-button (click)="onAddTask()" color="primary">Add</button>
+&nbsp;&nbsp;<button class="buttons"  mat-raised-button (click)="onAddTask()" color="primary">Add</button>&nbsp;
+<button class="buttons" mat-raised-button (click)="print()" color="primary">Print</button>
 <br><br>
-<mat-list>
+<mat-list id="print_table">
+   <br><h1 align="center">Quantity Survaying Department Task Management -- {{getSite()}}</h1><br><br>
+
     <mat-list-item *ngFor="let fil_data of FilteredQSData; last as last"  >
        <mat-icon mat-list-icon>engineering</mat-icon>
         

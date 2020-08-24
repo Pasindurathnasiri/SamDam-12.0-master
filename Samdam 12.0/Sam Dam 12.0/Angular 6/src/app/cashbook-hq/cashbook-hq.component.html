@@ -1,21 +1,22 @@
 <br><br>
-<h1 align="center">Main CashBook - HQ</h1>
 
 
 
     
-    <mat-card id="print_table">
+    <mat-card >
       <div class="crud-btn">
         <button  mat-raised-button (click)="onAddTransaction()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
-        <button class="remove-btn" (click)="printTableVH()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
+        <button class="remove-btn" (click)="print()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
         </div><br><br>
     <div class="employee-tbl">
       <!-- <p *ngIf="AllEQData.length <= 0" class="no-data">There is no Material added yet!</p> -->
     
     
     </div>
-   <mat-card> 
+   <mat-card id="print_table"> 
       <div class="mat-elevation-z8">
+        <h1 align="center">Main CashBook - HQ</h1>
+
         <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceTR">
       
      

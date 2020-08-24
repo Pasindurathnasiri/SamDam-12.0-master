@@ -23,6 +23,10 @@ import { AddVehicleComponent } from '../wh-hq-page/add-vehicle/add-vehicle.compo
 import {UpdateVehicleComponent} from '../wh-hq-page/update-vehicle/update-vehicle.component';
 import {TranferVehicleComponent} from '../wh-hq-page/tranfer-vehicle/tranfer-vehicle.component';
 import {RunningChartComponent} from '../wh-hq-page/running-chart/running-chart.component';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+
+
 @Component({
   selector: 'app-wh-hq-page',
   templateUrl: './wh-hq-page.component.html',
@@ -35,6 +39,7 @@ export class WhHqPageComponent implements OnInit {
   AllMaterialDatesData: any =[];
   AllVehicleData: any =[];
   forSelectMonth:FormGroup;
+  searchKey: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public dataSourceMatTypes: MatTableDataSource<Material>;
   public dataSourceMatDates: MatTableDataSource<Material>;
@@ -313,4 +318,44 @@ openVHTransfer(){
   this.dialog.open(TranferVehicleComponent,adddialogConfig)
 }
 
+onSearchClear(){
+  this.searchKey ='';
+  this.applyFiltermattype();
+}
+
+applyFiltermattype(){
+  return this.dataSourceMatTypes.filter= this.searchKey.trim().toLowerCase();
+}
+
+printTable(){
+  var element = document.getElementById('print_table')
+
+   html2canvas(element).then((canvas)=>{
+     console.log(canvas);
+
+     var imgData = canvas.toDataURL('image/png')
+     var doc = new jspdf()
+     var imgHeight = canvas.height *235 /canvas.width;
+     doc.addImage(imgData,0,0,235,imgHeight)
+     doc.save("materialRecords.pdf")
+   })
+}
+
+applyFilterRec(){
+  return this.dataSourceEQRecords.filter= this.searchKey.trim().toLowerCase();
+}
+
+printTableVH(){
+  var element = document.getElementById('tableVH')
+
+   html2canvas(element).then((canvas)=>{
+     console.log(canvas);
+
+     var imgData = canvas.toDataURL('image/png')
+     var doc = new jspdf()
+     var imgHeight = canvas.height *235 /canvas.width;
+     doc.addImage(imgData,0,0,235,imgHeight)
+     doc.save("Vehicles.pdf")
+   })
+}
 }

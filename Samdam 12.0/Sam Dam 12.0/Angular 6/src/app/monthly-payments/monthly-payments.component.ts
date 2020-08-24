@@ -8,7 +8,8 @@ import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import { MatSort } from '@angular/material/sort';
 import { MatTable,MatTableDataSource } from '@angular/material/table';
 import {UpdateChTransactionsComponent} from './update-ch-transactions/update-ch-transactions.component'
-
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-monthly-payments',
@@ -71,5 +72,19 @@ export class MonthlyPaymentsComponent implements OnInit {
       
     }
 
+  }
+
+  printTableCH(){
+    var element = document.getElementById('print_table')
+
+    html2canvas(element).then((canvas)=>{
+      console.log(canvas);
+ 
+      var imgData = canvas.toDataURL('image/png')
+      var doc = new jspdf()
+      var imgHeight = canvas.height *235 /canvas.width;
+      doc.addImage(imgData,0,0,235,imgHeight)
+      doc.save("ch_transaction.pdf")
+    })
   }
 }

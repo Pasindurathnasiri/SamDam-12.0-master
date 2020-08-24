@@ -1,19 +1,6 @@
 <br>
 <h1 align="center">Monthly Reports</h1>
 
-<mat-card>
-    <google-chart #chart
-   [title]="title"
-   [type]="type"
-   [data]="getData()"
-   [columnNames]="columnNames"
-   [options]="options"
-   [width]="width"
-   [height]="height">
-</google-chart>
-
-
-</mat-card><br><br>
 
 
 <mat-card>
@@ -67,3 +54,19 @@
 
 
 </mat-card> <br><br>
+
+
+
+<mat-card>
+  <google-chart #chart
+ [title]="title"
+ [type]="type"
+ [data]="getData()"
+ [columnNames]="columnNames"
+ [options]="options"
+ [width]="width"
+ [height]="height">
+</google-chart>
+
+
+</mat-card><br><br>
