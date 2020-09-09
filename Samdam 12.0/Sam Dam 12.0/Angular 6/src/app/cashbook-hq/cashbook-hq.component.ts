@@ -23,7 +23,7 @@ export class CashbookHqComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   allTransactionsData :any =[];
 
-  displayedColumnsTR:string[] = ['date','tr_id','site','description','bank_credit','bank_debit','cash_debit','cash_credit','balance','action']
+  displayedColumnsTR:string[] = ['date','tr_id','site','description','bank_credit','bank_debit','cash_debit','cash_credit','balance']
   constructor(private dialog:MatDialog,private accService:AccountingService,private _bottomSheet:MatBottomSheet) {
     this.accService.getAllTransactions().subscribe(data=>{
       this.allTransactionsData=data;
