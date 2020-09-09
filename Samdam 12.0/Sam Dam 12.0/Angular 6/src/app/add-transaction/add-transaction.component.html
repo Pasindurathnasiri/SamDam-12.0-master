@@ -6,7 +6,7 @@
         
        <mat-form-field>
         <mat-label>Select Date</mat-label>
-        <input matInput [matDatepicker]="dorpicker" formControlName="dor" required>
+        <input matInput [max]="maxDate" [matDatepicker]="dorpicker" formControlName="dor" required>
         <mat-datepicker-toggle matSuffix [for]="dorpicker"></mat-datepicker-toggle>
         <mat-datepicker #dorpicker></mat-datepicker>
       </mat-form-field><br><br>

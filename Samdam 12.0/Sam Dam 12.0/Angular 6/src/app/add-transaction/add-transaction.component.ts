@@ -19,6 +19,8 @@ interface Site{
   styleUrls: ['./add-transaction.component.css']
 })
 export class AddTransactionComponent implements OnInit {
+  minDate: Date;
+  maxDate: Date;
   siteControl = new FormControl('',Validators.required);
   siteFormControl = new FormControl('', Validators.required);
   sites: Site [] = [];
@@ -39,6 +41,12 @@ export class AddTransactionComponent implements OnInit {
      cash_debit:[],
      cash_credit:[],
    })
+
+   var currentDate = new Date().toLocaleDateString();
+   
+  
+    this.minDate = new Date();
+    this.maxDate = new Date(currentDate);
 
    //Get sites
    this.siteService.GetAllSites().subscribe(data =>{
