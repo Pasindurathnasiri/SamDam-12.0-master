@@ -9,14 +9,17 @@
         <button  mat-raised-button (click)="onAddTransaction()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
         <button class="remove-btn" (click)="print()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
         </div><br><br>
+        
+ 
+
     <div class="employee-tbl">
       <!-- <p *ngIf="AllEQData.length <= 0" class="no-data">There is no Material added yet!</p> -->
     
     
     </div>
-   <mat-card id="print_table"> 
+   <mat-card id="print_table" class="print-card"> 
       <div class="mat-elevation-z8">
-        <h1 align="center">Main CashBook - {{getSiteName()}}</h1>
+        <h1 align="center">CashBook - {{getSiteName()}}</h1>
         <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceTR">
       
      
@@ -70,9 +73,8 @@
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let element; let i = index;">
-             <button mat-icon-button color="primary" (click)="onUpdateTransaction(i,element)"><mat-icon>launch</mat-icon></button> 
-             <button mat-icon-button color="warn" (click)="deleteTransaction(i,element)"><mat-icon>delete_outline</mat-icon></button>
-            </td>
+             <!-- <button mat-icon-button color="primary" (click)="onUpdateTransaction(i,element)"><mat-icon>launch</mat-icon></button>  -->
+             </td>
           </ng-container>
       
           <ng-container matColumnDef="loading">
@@ -96,3 +98,5 @@
       
     
     </div></mat-card>
+
+

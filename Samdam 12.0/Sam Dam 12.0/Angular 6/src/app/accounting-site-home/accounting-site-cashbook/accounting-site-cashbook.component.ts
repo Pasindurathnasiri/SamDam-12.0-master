@@ -23,8 +23,9 @@ export class AccountingSiteCashbookComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   allTransactionsData :any =[];
+  allFilteredTransactionsData :any =[];
   AllSiteData:any =[];
-  displayedColumnsTR:string[] = ['date','tr_id','site','description','bank_credit','bank_debit','cash_debit','cash_credit','balance','action'];
+  displayedColumnsTR:string[] = ['date','tr_id','site','description','bank_credit','bank_debit','cash_debit','cash_credit','balance'];
 
   constructor(private dialog:MatDialog,private actRoute:ActivatedRoute,private accService:AccountingService,private _bottomSheet:MatBottomSheet,private siteService:SiteService) {
     var site_id = this.actRoute.snapshot.paramMap.get('id');
@@ -37,6 +38,8 @@ export class AccountingSiteCashbookComponent implements OnInit {
       this.allTransactionsData=data;
       this.dataSourceTR = new MatTableDataSource<Transaction>(this.allTransactionsData);
       this.dataSourceTR.filter = site_id;
+      this.allFilteredTransactionsData = this.dataSourceTR.filteredData;
+      console.log(this.dataSourceTR);
       setTimeout(()=>{
         this.dataSourceTR.paginator = this.paginator;
       },0)
@@ -83,12 +86,14 @@ export class AccountingSiteCashbookComponent implements OnInit {
     return (e.bank_credit+e.cash_debit)-(e.bank_debit+e.cash_credit);
    }else{
      for(var j=0;j<i;j++){
-      prev_bal= prev_bal+(this.allTransactionsData[j].bank_credit+this.allTransactionsData[j].cash_debit)-(this.allTransactionsData[j].bank_debit+this.allTransactionsData[j].cash_credit);
-   }
-  var today_bal = (this.allTransactionsData[i].bank_credit+this.allTransactionsData[i].cash_debit)-(this.allTransactionsData[i].bank_debit+this.allTransactionsData[i].cash_credit);
-  return prev_bal+today_bal;
+        prev_bal= prev_bal+(this.allFilteredTransactionsData[j].bank_credit+this.allFilteredTransactionsData[j].cash_debit)-(this.allFilteredTransactionsData[j].bank_debit+this.allFilteredTransactionsData[j].cash_credit); 
+       
+      }
+      var today_bal = (e.bank_credit+e.cash_debit)-(e.bank_debit+e.cash_credit);
+      return prev_bal+today_bal;
 
    }
+
   }
 
   getSiteName(){
