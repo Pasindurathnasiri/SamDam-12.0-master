@@ -32,6 +32,8 @@ export interface Designations {
   providers: [EmployeeService]
 })
 export class AddEmployeeComponent implements OnInit {
+  minDate: Date;
+  maxDate: Date;
   public readonly addGroup: FormGroup;
   showSucessMessage: boolean;
   serverErrorMessages: string;
@@ -69,7 +71,13 @@ export class AddEmployeeComponent implements OnInit {
  
   
   constructor(private formBuilder: FormBuilder,private employeeService:EmployeeService,private router: Router,private siteService:SiteService) { 
-       
+   
+    var currentDate = new Date()
+   
+  
+    this.minDate = new Date();
+    this.maxDate = new Date(currentDate);
+
    
    /// Get Sites data & pass to mat select 
   this.siteService.GetAllSites().subscribe(data=>{

@@ -6,6 +6,7 @@ import {Transaction} from '../shared/accounting.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {SiteService} from '../shared/site.service';
+import {FormControl, FormBuilder, FormGroup ,Validators, NgForm} from '@angular/forms';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { MatTableDataSource } from '@angular/material/table';
 import {UpdateCashbookComponent} from '../cashbook-hq/update-cashbook/update-cashbook.component';
@@ -19,18 +20,25 @@ import html2canvas from 'html2canvas';
 })
 export class CashbookHqComponent implements OnInit {
   dataSourceTR:MatTableDataSource<Transaction>;
+  forSelectMonth:FormGroup;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   allTransactionsData :any =[];
 
   displayedColumnsTR:string[] = ['date','tr_id','site','description','bank_credit','bank_debit','cash_debit','cash_credit','balance']
-  constructor(private dialog:MatDialog,private accService:AccountingService,private _bottomSheet:MatBottomSheet) {
+  constructor(private dialog:MatDialog,private accService:AccountingService,private formBuilder: FormBuilder,private _bottomSheet:MatBottomSheet) {
     this.accService.getAllTransactions().subscribe(data=>{
       this.allTransactionsData=data;
       this.dataSourceTR = new MatTableDataSource<Transaction>(this.allTransactionsData);
+      console.log(this.dataSourceTR);
       setTimeout(()=>{
         this.dataSourceTR.paginator = this.paginator;
       },0)
+    })
+
+    this.forSelectMonth= this.formBuilder.group({
+      
+      select_month:[]
     })
 
 
@@ -96,6 +104,12 @@ export class CashbookHqComponent implements OnInit {
      doc.addImage(imgData,0,0,235,imgHeight)
      doc.save("Main_cashbook.pdf")
    })
+  }
+
+  onMonthChange(){
+    var selectedmonth = this.forSelectMonth.value.select_month;
+    this.dataSourceTR.filter =selectedmonth;
+  
   }
   
 

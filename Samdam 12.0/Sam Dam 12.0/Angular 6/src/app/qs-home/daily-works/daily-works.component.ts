@@ -31,7 +31,8 @@ export interface TaskData{
   styleUrls: ['./daily-works.component.css']
 })
 export class DailyWorksComponent implements OnInit {
-
+  minDate: Date;
+  maxDate: Date;
   public dailyWorkForm:FormGroup;
   dataSourceDW:MatTableDataSource<DailyWork>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -56,6 +57,8 @@ export class DailyWorksComponent implements OnInit {
       weight:[]
     })
 
+    
+
     //get all daily works
     this.qsService.getAllDailyWorks().subscribe(data=>{
       this.AllDWorksData=data;
@@ -65,6 +68,12 @@ export class DailyWorksComponent implements OnInit {
         this.dataSourceDW.paginator = this.paginator;
       })
     })
+
+    var currentDate = new Date()
+   
+  
+    this.minDate = new Date();
+    this.maxDate = new Date(currentDate);
     
   }
 

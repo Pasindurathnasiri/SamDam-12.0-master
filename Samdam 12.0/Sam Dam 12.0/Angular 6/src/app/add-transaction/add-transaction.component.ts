@@ -42,7 +42,7 @@ export class AddTransactionComponent implements OnInit {
      cash_credit:[],
    })
 
-   var currentDate = new Date().toLocaleDateString();
+   var currentDate = new Date()
    
   
     this.minDate = new Date();

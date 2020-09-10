@@ -12,7 +12,7 @@
         
        <mat-form-field>
         <mat-label>Issued Date</mat-label>
-        <input matInput [matDatepicker]="doipicker" formControlName="doi" required>
+        <input matInput [max]="maxDate" [matDatepicker]="doipicker" formControlName="doi" required>
         <mat-datepicker-toggle matSuffix [for]="doipicker"></mat-datepicker-toggle>
         <mat-datepicker #doipicker></mat-datepicker>
       </mat-form-field><br><br>

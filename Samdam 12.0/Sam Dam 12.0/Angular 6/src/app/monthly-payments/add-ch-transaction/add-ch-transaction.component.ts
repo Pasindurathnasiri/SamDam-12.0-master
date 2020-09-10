@@ -9,6 +9,8 @@ import { getMonth } from 'date-fns';
   styleUrls: ['./add-ch-transaction.component.css']
 })
 export class AddChTransactionComponent implements OnInit {
+  minDate: Date;
+  maxDate: Date;
   public addCHTransactionGroup:FormGroup;
   showSucessMessage: boolean;
    serverErrorMessages: string;
@@ -26,6 +28,11 @@ export class AddChTransactionComponent implements OnInit {
      
    })
 
+   var currentDate = new Date();
+   
+  
+   this.minDate = new Date();
+   this.maxDate = new Date(currentDate);
 
   }
 
