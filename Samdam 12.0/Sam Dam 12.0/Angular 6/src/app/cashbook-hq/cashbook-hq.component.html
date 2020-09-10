@@ -1,119 +1,119 @@
-<br><br>
+  <br><br>
 
 
 
-    
-    <mat-card >
-      <div class="crud-btn">
-        <button  mat-raised-button (click)="onAddTransaction()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
-        <button class="remove-btn" (click)="print()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
-        </div><br><br>
-        <form [formGroup]=this.forSelectMonth>
-          <mat-form-field>
-            <mat-label>Select Month</mat-label>
-            <mat-select [(value)]="selected" formControlName="select_month" (selectionChange)="onMonthChange()" >
-              <mat-option value="January">January</mat-option>
-              <mat-option value="February">February</mat-option>
-              <mat-option value="March">March</mat-option>
-              <mat-option value="April">April</mat-option>
-              <mat-option value="May">May</mat-option>
-              <mat-option value="June">June</mat-option>
-              <mat-option value="July">July</mat-option>
-              <mat-option value="August">August</mat-option>
-              <mat-option value="September">September</mat-option>
-              <mat-option value="October">October</mat-option>
-              <mat-option value="November">November</mat-option>
-              <mat-option value="December">December</mat-option>
-              
-            </mat-select>
-           
-          </mat-form-field> <br><br>
-        </form>
-    <div class="employee-tbl">
-      <!-- <p *ngIf="AllEQData.length <= 0" class="no-data">There is no Material added yet!</p> -->
-    
-    
-    </div>
-   <mat-card id="print_table"> 
-      <div class="mat-elevation-z8">
-        <h1 align="center">Main CashBook - HQ</h1>
+      
+      <mat-card >
+        <div class="crud-btn">
+          <button  mat-raised-button (click)="onAddTransaction()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
+          <button class="remove-btn" (click)="print()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
+          </div><br><br>
+          <form [formGroup]=this.forSelectMonth>
+            <mat-form-field>
+              <mat-label>Select Month</mat-label>
+              <mat-select [(value)]="selected" formControlName="select_month" (selectionChange)="onMonthChange()" >
+                <mat-option value="January">January</mat-option>
+                <mat-option value="February">February</mat-option>
+                <mat-option value="March">March</mat-option>
+                <mat-option value="April">April</mat-option>
+                <mat-option value="May">May</mat-option>
+                <mat-option value="June">June</mat-option>
+                <mat-option value="July">July</mat-option>
+                <mat-option value="August">August</mat-option>
+                <mat-option value="September">September</mat-option>
+                <mat-option value="October">October</mat-option>
+                <mat-option value="November">November</mat-option>
+                <mat-option value="December">December</mat-option>
+                
+              </mat-select>
+            
+            </mat-form-field> <br><br>
+          </form>
+      <div class="employee-tbl">
+        <!-- <p *ngIf="AllEQData.length <= 0" class="no-data">There is no Material added yet!</p> -->
+      
+      
+      </div>
+    <mat-card id="print_table"> 
+        <div class="mat-elevation-z8">
+          <h1 align="center">Main CashBook - HQ</h1>
 
-        <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceTR">
+          <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceTR">
+        
       
-     
-          <!-- Id Column -->
-          <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-            <td mat-cell *matCellDef="let element; let i = index;">{{getDate(element)}}</td>
-          </ng-container>
-      
-          <ng-container matColumnDef="tr_id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction ID</th>
-            <td mat-cell *matCellDef="let row">{{row._id}}</td>
-          </ng-container>
-      
-          
-          <ng-container matColumnDef="site">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Site</th>
-            <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
-          </ng-container>
+            <!-- Id Column -->
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+              <td mat-cell *matCellDef="let element; let i = index;">{{getDate(element)}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="tr_id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction ID</th>
+              <td mat-cell *matCellDef="let row">{{row._id}}</td>
+            </ng-container>
+        
+            
+            <ng-container matColumnDef="site">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Site</th>
+              <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-            <td mat-cell *matCellDef="let row">{{row.description}}</td>
-          </ng-container>
-      
-          <ng-container matColumnDef="bank_debit">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit (Bank)</th>
-            <td mat-cell *matCellDef="let row">{{row.bank_debit | currency:'Rs.'}}</td>
-          </ng-container>
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+              <td mat-cell *matCellDef="let row">{{row.description}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="bank_debit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit (Bank)</th>
+              <td mat-cell *matCellDef="let row">{{row.bank_debit | currency:'Rs.'}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="bank_credit">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit (Bank)</th>
-            <td mat-cell *matCellDef="let row">{{row.bank_credit | currency:'Rs.'}}</td>
-          </ng-container>
+            <ng-container matColumnDef="bank_credit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit (Bank)</th>
+              <td mat-cell *matCellDef="let row">{{row.bank_credit | currency:'Rs.'}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="cash_debit">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit (Cash)</th>
-            <td mat-cell *matCellDef="let row">{{row.cash_debit | currency:'Rs.'}}</td>
-          </ng-container>
+            <ng-container matColumnDef="cash_debit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit (Cash)</th>
+              <td mat-cell *matCellDef="let row">{{row.cash_debit | currency:'Rs.'}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="cash_credit">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit (Cash)</th>
-            <td mat-cell *matCellDef="let row">{{row.cash_credit | currency:'Rs.'}}</td>
-          </ng-container>
-    
-          <ng-container matColumnDef="balance">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance</th>
-            <td mat-cell *matCellDef="let element; let i = index;">{{getBalance(i,element) | currency:'Rs.'}}</td>
-          </ng-container>
+            <ng-container matColumnDef="cash_credit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit (Cash)</th>
+              <td mat-cell *matCellDef="let row">{{row.cash_credit | currency:'Rs.'}}</td>
+            </ng-container>
+      
+            <ng-container matColumnDef="balance">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance</th>
+              <td mat-cell *matCellDef="let element; let i = index;">{{getBalance(i,element) | currency:'Rs.'}}</td>
+            </ng-container>
 
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef>Actions</th>
-            <td mat-cell *matCellDef="let element; let i = index;">
-             <button mat-icon-button color="primary" (click)="onUpdateTransaction(i,element)"><mat-icon>launch</mat-icon></button> 
-             <button mat-icon-button color="warn" (click)="deleteTransaction(i,element)"><mat-icon>delete_outline</mat-icon></button>
-            </td>
-          </ng-container>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let element; let i = index;">
+              <button mat-icon-button color="primary" (click)="onUpdateTransaction(i,element)"><mat-icon>launch</mat-icon></button> 
+              <button mat-icon-button color="warn" (click)="deleteTransaction(i,element)"><mat-icon>delete_outline</mat-icon></button>
+              </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="loading">
+              <mat-footer-cell *matFooterCellDef colspan="6">
+                Loading Data...
+              </mat-footer-cell>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsTR"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsTR;"></tr>
+            <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+          </table>
+        
+          <mat-paginator #paginator
+              [length]="dataSourceTR?.data.length"
+              [pageIndex]="0"
+              [pageSize]="50"
+              [pageSizeOptions]="[25, 50, 100, 250]">
+          </mat-paginator>
+        
+        
       
-          <ng-container matColumnDef="loading">
-            <mat-footer-cell *matFooterCellDef colspan="6">
-              Loading Data...
-            </mat-footer-cell>
-          </ng-container>
-      
-          <tr mat-header-row *matHeaderRowDef="displayedColumnsTR"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumnsTR;"></tr>
-          <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
-        </table>
-      
-        <mat-paginator #paginator
-            [length]="dataSourceTR?.data.length"
-            [pageIndex]="0"
-            [pageSize]="50"
-            [pageSizeOptions]="[25, 50, 100, 250]">
-        </mat-paginator>
-      
-      
-    
-    </div></mat-card>
+      </div></mat-card>

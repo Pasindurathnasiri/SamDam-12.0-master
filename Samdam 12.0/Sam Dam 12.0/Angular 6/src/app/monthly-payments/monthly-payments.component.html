@@ -2,89 +2,89 @@
 
 
 
+      
+  <mat-card >
+      <div class="crud-btn">
+        <button  mat-raised-button (click)="onAddCHTransaction()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
+        <button class="remove-btn" (click)="printTableCH()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
+        </div><br><br>
+    <div class="employee-tbl">
+      <!-- <p *ngIf="AllEQData.length <= 0" class="no-data">There is no Material added yet!</p> -->
     
-<mat-card >
-    <div class="crud-btn">
-      <button  mat-raised-button (click)="onAddCHTransaction()" color="primary"><mat-icon>library_add</mat-icon>&nbsp;Add</button>&nbsp;&nbsp;&nbsp;
-      <button class="remove-btn" (click)="printTableCH()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>&nbsp;&nbsp;&nbsp;
-      </div><br><br>
-  <div class="employee-tbl">
-    <!-- <p *ngIf="AllEQData.length <= 0" class="no-data">There is no Material added yet!</p> -->
-  
-  
-  </div>
- <mat-card id="print_table"> 
-    <div class="mat-elevation-z8"><h1 align="center">Cheque Transaction Book</h1>
-      <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceCH">
     
-        <ng-container matColumnDef="chtr_id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cheque ID</th>
-          <td mat-cell *matCellDef="let row">{{row.chtr_id}}</td>
-        </ng-container>
+    </div>
+  <mat-card id="print_table"> 
+      <div class="mat-elevation-z8"><h1 align="center">Cheque Transaction Book</h1>
+        <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceCH">
+      
+          <ng-container matColumnDef="chtr_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cheque ID</th>
+            <td mat-cell *matCellDef="let row">{{row.chtr_id}}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="doi">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Issued Date</th>
-          <td mat-cell *matCellDef="let element; let i = index;">{{getDOI(i,element)}}</td>
-        </ng-container>
-        
-        <!-- Id Column -->
-        <ng-container matColumnDef="dot">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Transferred Date</th>
-          <td mat-cell *matCellDef="let element; let i = index;">{{getDOT(i,element)}}</td>
-        </ng-container>
-    
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction Type</th>
-          <td mat-cell *matCellDef="let row">{{row.type[0]}}</td>
-        </ng-container>
-    
-     
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-          <td mat-cell *matCellDef="let row">{{row.description}}</td>
-        </ng-container>
-    
-        <ng-container matColumnDef="bank_debit">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit (Bank)</th>
-          <td mat-cell *matCellDef="let row">{{row.bank_debit | currency:'Rs.'}}</td>
-        </ng-container>
+          <ng-container matColumnDef="doi">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Issued Date</th>
+            <td mat-cell *matCellDef="let element; let i = index;">{{getDOI(i,element)}}</td>
+          </ng-container>
+          
+          <!-- Id Column -->
+          <ng-container matColumnDef="dot">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Transferred Date</th>
+            <td mat-cell *matCellDef="let element; let i = index;">{{getDOT(i,element)}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction Type</th>
+            <td mat-cell *matCellDef="let row">{{row.type[0]}}</td>
+          </ng-container>
+      
+      
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+            <td mat-cell *matCellDef="let row">{{row.description}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="bank_debit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit (Bank)</th>
+            <td mat-cell *matCellDef="let row">{{row.bank_debit | currency:'Rs.'}}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="bank_credit">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit (Bank)</th>
-          <td mat-cell *matCellDef="let row">{{row.bank_credit | currency:'Rs.'}}</td>
-        </ng-container>
+          <ng-container matColumnDef="bank_credit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit (Bank)</th>
+            <td mat-cell *matCellDef="let row">{{row.bank_credit | currency:'Rs.'}}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="recpay">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Sender or Reciever</th>
-          <td mat-cell *matCellDef="let row">{{row.rec_or_pay}}</td>
-        </ng-container>
+          <ng-container matColumnDef="recpay">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Sender or Reciever</th>
+            <td mat-cell *matCellDef="let row">{{row.rec_or_pay}}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>Actions</th>
-          <td mat-cell *matCellDef="let element; let i = index;">
-           <button mat-icon-button color="primary" (click)="onUpdateCHTransaction(i,element)"><mat-icon>launch</mat-icon></button> 
-           <button mat-icon-button color="warn" (click)="deleteCHTransaction(i,element)"><mat-icon>delete_outline</mat-icon></button>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element; let i = index;">
+            <button mat-icon-button color="primary" (click)="onUpdateCHTransaction(i,element)"><mat-icon>launch</mat-icon></button> 
+            <button mat-icon-button color="warn" (click)="deleteCHTransaction(i,element)"><mat-icon>delete_outline</mat-icon></button>
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+              Loading Data...
+            </mat-footer-cell>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsCH"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsCH;"></tr>
+          <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+        </table>
+      
+        <mat-paginator #paginator
+            [length]="dataSourceCH?.data.length"
+            [pageIndex]="0"
+            [pageSize]="50"
+            [pageSizeOptions]="[25, 50, 100, 250]">
+        </mat-paginator>
+      
+      
     
-        <ng-container matColumnDef="loading">
-          <mat-footer-cell *matFooterCellDef colspan="6">
-            Loading Data...
-          </mat-footer-cell>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsCH"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumnsCH;"></tr>
-        <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
-      </table>
-    
-      <mat-paginator #paginator
-          [length]="dataSourceCH?.data.length"
-          [pageIndex]="0"
-          [pageSize]="50"
-          [pageSizeOptions]="[25, 50, 100, 250]">
-      </mat-paginator>
-    
-    
-  
-  </div></mat-card>
+    </div></mat-card>

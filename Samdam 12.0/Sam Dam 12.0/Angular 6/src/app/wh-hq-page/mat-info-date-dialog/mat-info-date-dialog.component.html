@@ -1,56 +1,56 @@
-<h1 align="center">Material Info at Date</h1>
+    <h1 align="center">Material Info at Date</h1>
 
-<mat-tab-group animationDuration="500ms">
-    <!-- Material recieved tab -->
-    <mat-tab label="Material Receieved">
-        <mat-accordion>
-            <mat-card>
-                <form [formGroup]="this.materialForm_Final">
-                    <mat-form-field>
-                        <mat-label>Date</mat-label>
-                        <input matInput [matDatepicker]="dorpicker" formControlName="dor">
-                        <mat-datepicker-toggle matSuffix [for]="dorpicker"></mat-datepicker-toggle>
-                        <mat-datepicker #dorpicker></mat-datepicker>
-                      </mat-form-field><br><br>
-                    <!-- Material Types -->
-                    <section *ngFor="let material_R of materials_R; let i=index;">
-                    <mat-form-field class="input" >
-                        <mat-label>{{material_R}}</mat-label>
-                        <input matInput name="material_{{i}}" formControlName="{{material_R}}" > 
-                    </mat-form-field><br><br>
-                    </section>
-                    <button (click)="onUpdateRecordRec()"  mat-raised-button color="primary">Update</button>&nbsp;&nbsp;
-                    <button (click)="onDelete()" mat-raised-button color="warn">Delete Record</button>&nbsp;&nbsp;
-                    <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
-                       
-                </form>
-    
-            </mat-card>
-     </mat-accordion>
-       
-    </mat-tab>
-    <!--Material Consume tab  -->
-    <mat-tab label="Material Consumption">
-        <mat-accordion>
-            <mat-card>
-                <form [formGroup]="this.materialForm_Final">
-                    
-                    <!-- Material Types -->
-                    <section *ngFor="let material of materials; let i=index;">
-                    <mat-form-field class="input-nic" >
-                        <mat-label>{{material}}</mat-label>
-                        <input matInput name="material_{{i}}" formControlName="{{material}}" > 
-                    </mat-form-field><br><br>
-                    </section>
-                    <button (click)="onUpdateRecord()"  mat-raised-button color="primary">Update</button>&nbsp;&nbsp;
-                    <button (click)="onDelete()" mat-raised-button color="warn">Delete Record</button>&nbsp;&nbsp;
-                    <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
-                       
-                </form>
-    
-            </mat-card>
-     </mat-accordion>
-       
-    </mat-tab>
-    
-</mat-tab-group>
+    <mat-tab-group animationDuration="500ms">
+        <!-- Material recieved tab -->
+        <mat-tab label="Material Receieved">
+            <mat-accordion>
+                <mat-card>
+                    <form [formGroup]="this.materialForm_Final">
+                        <mat-form-field>
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="dorpicker" formControlName="dor">
+                            <mat-datepicker-toggle matSuffix [for]="dorpicker"></mat-datepicker-toggle>
+                            <mat-datepicker #dorpicker></mat-datepicker>
+                        </mat-form-field><br><br>
+                        <!-- Material Types -->
+                        <section *ngFor="let material_R of materials_R; let i=index;">
+                        <mat-form-field class="input" >
+                            <mat-label>{{material_R}}</mat-label>
+                            <input matInput name="material_{{i}}" formControlName="{{material_R}}" > 
+                        </mat-form-field><br><br>
+                        </section>
+                        <button (click)="onUpdateRecordRec()"  mat-raised-button color="primary">Update</button>&nbsp;&nbsp;
+                        <button (click)="onDelete()" mat-raised-button color="warn">Delete Record</button>&nbsp;&nbsp;
+                        <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+                        
+                    </form>
+        
+                </mat-card>
+        </mat-accordion>
+        
+        </mat-tab>
+        <!--Material Consume tab  -->
+        <mat-tab label="Material Consumption">
+            <mat-accordion>
+                <mat-card>
+                    <form [formGroup]="this.materialForm_Final">
+                        
+                        <!-- Material Types -->
+                        <section *ngFor="let material of materials; let i=index;">
+                        <mat-form-field class="input-nic" >
+                            <mat-label>{{material}}</mat-label>
+                            <input matInput name="material_{{i}}" formControlName="{{material}}" > 
+                        </mat-form-field><br><br>
+                        </section>
+                        <button (click)="onUpdateRecord()"  mat-raised-button color="primary">Update</button>&nbsp;&nbsp;
+                        <button (click)="onDelete()" mat-raised-button color="warn">Delete Record</button>&nbsp;&nbsp;
+                        <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+                        
+                    </form>
+        
+                </mat-card>
+        </mat-accordion>
+        
+        </mat-tab>
+        
+    </mat-tab-group>

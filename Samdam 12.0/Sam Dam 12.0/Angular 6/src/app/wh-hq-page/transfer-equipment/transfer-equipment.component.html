@@ -1,32 +1,32 @@
 
-<h1 align="center">Transfer Equipment</h1>
-<form [formGroup]=transferEQForm>
-    <mat-form-field>
-        <mat-label>Select Destination Site</mat-label>
-        <mat-select [(value)]="selectedDesignation" formControlName="site" required>
-          <mat-option>--</mat-option>
-          <mat-option *ngFor="let site of sites" [value]="site">
-            {{site.site_name}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="siteControl.hasError('required')">Please choose Designation</mat-error>
-        <mat-hint>{{siteControl.value?.sound}}</mat-hint>
-      </mat-form-field> <br><br>
+  <h1 align="center">Transfer Equipment</h1>
+  <form [formGroup]=transferEQForm>
+      <mat-form-field>
+          <mat-label>Select Destination Site</mat-label>
+          <mat-select [(value)]="selectedDesignation" formControlName="site" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let site of sites" [value]="site">
+              {{site.site_name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="siteControl.hasError('required')">Please choose Designation</mat-error>
+          <mat-hint>{{siteControl.value?.sound}}</mat-hint>
+        </mat-form-field> <br><br>
+      
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="dotpicker" formControlName="dot">
+        <mat-datepicker-toggle matSuffix [for]="dotpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dotpicker></mat-datepicker>
+      </mat-form-field><br><br>
+    <!-- Material Types -->
+    <section *ngFor="let equipment of equipments; let i=index;">
+      <mat-form-field class="input-nic" >
+          <mat-label>{{equipment}}</mat-label>
+          <input matInput type="number" name="equipment_{{i}}" formControlName="{{equipment}}" > 
+      </mat-form-field><br><br>
+      </section>
+      <button (click)="transferEQ()"  mat-raised-button color="primary">Add</button>&nbsp;&nbsp;
+      <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
     
-    <mat-form-field>
-      <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="dotpicker" formControlName="dot">
-      <mat-datepicker-toggle matSuffix [for]="dotpicker"></mat-datepicker-toggle>
-      <mat-datepicker #dotpicker></mat-datepicker>
-    </mat-form-field><br><br>
-  <!-- Material Types -->
-  <section *ngFor="let equipment of equipments; let i=index;">
-    <mat-form-field class="input-nic" >
-        <mat-label>{{equipment}}</mat-label>
-        <input matInput type="number" name="equipment_{{i}}" formControlName="{{equipment}}" > 
-    </mat-form-field><br><br>
-    </section>
-    <button (click)="transferEQ()"  mat-raised-button color="primary">Add</button>&nbsp;&nbsp;
-    <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
-  
-</form>
+  </form>

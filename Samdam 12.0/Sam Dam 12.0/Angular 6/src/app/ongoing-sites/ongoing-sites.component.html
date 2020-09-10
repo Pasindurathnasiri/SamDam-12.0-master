@@ -1,22 +1,22 @@
-<h1 align="center">Ongoing Construction Sites</h1>
+    <h1 align="center">Ongoing Construction Sites</h1>
 
-    <mat-card class="site-card" *ngFor="let site of allSiteData; last as last"  >
-       <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
-        <h4><strong>{{site.site_name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp; --   {{site.place}} </h4>
-        <p mat-line class="demo-2"> Required Employees : {{getNoofEmployees(site)}} &nbsp;|&nbsp; Allocated Employees : {{getAllocatedEmp(site)}} &nbsp;|&nbsp; Allcated Vehicles & Machines : {{getAllocatedVH(site)}}</p>
-        
-        <p mat-line class="demo-2"> Estimated Budget : {{site.est_budget | currency:'Rs :'}} &nbsp;|&nbsp; Started Date : {{getDate(site.start_date)}} &nbsp;|&nbsp; Estimated Ending Date : {{getDate(site.end_date)}}</p>
-        <p mat-line class="demo-2"> Process :<strong> {{getProcess(site)}}%  Completed</strong></p>
-       <mat-progress-spinner
-        class="example-margin"
-        [color]="color"
-        [mode]="mode"
-        [value]="getProcess(site)">
-        
-    </mat-progress-spinner>
-    <button mat-icon-button color="primary" (click)="openUpdate(site)" class="push-right"><mat-icon>update</mat-icon></button>&nbsp;
-        <button mat-icon-button color="warn" (click)="deleteSite(site)" ><mat-icon>delete_forever</mat-icon></button>&nbsp;
-   
-        <br>
-    </mat-card><br><br>
- 
+        <mat-card class="site-card" *ngFor="let site of allSiteData; last as last"  >
+        <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
+            <h4><strong>{{site.site_name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp; --   {{site.place}} </h4>
+            <p mat-line class="demo-2"> Required Employees : {{getNoofEmployees(site)}} &nbsp;|&nbsp; Allocated Employees : {{getAllocatedEmp(site)}} &nbsp;|&nbsp; Allcated Vehicles & Machines : {{getAllocatedVH(site)}}</p>
+            
+            <p mat-line class="demo-2"> Estimated Budget : {{site.est_budget | currency:'Rs :'}} &nbsp;|&nbsp; Started Date : {{getDate(site.start_date)}} &nbsp;|&nbsp; Estimated Ending Date : {{getDate(site.end_date)}}</p>
+            <p mat-line class="demo-2"> Process :<strong> {{getProcess(site)}}%  Completed</strong></p>
+        <mat-progress-spinner
+            class="example-margin"
+            [color]="color"
+            [mode]="mode"
+            [value]="getProcess(site)">
+            
+        </mat-progress-spinner>
+        <button mat-icon-button color="primary" (click)="openUpdate(site)" class="push-right"><mat-icon>update</mat-icon></button>&nbsp;
+            <button mat-icon-button color="warn" (click)="deleteSite(site)" ><mat-icon>delete_forever</mat-icon></button>&nbsp;
+    
+            <br>
+        </mat-card><br><br>
+    

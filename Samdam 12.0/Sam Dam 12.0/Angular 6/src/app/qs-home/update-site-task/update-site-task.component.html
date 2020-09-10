@@ -1,73 +1,73 @@
-<h1 align="center">Update Task</h1>
+  <h1 align="center">Update Task</h1>
 
-<mat-card>
-    <form [formGroup]="this.updateTaskForm"> 
-      
+  <mat-card>
+      <form [formGroup]="this.updateTaskForm"> 
         
-        <mat-form-field>
-         <mat-label>Allocation Date</mat-label>
-         <input matInput [matDatepicker]="doapicker" formControlName="allocation_date" required>
-         <mat-datepicker-toggle matSuffix [for]="doapicker"></mat-datepicker-toggle>
-         <mat-datepicker #doapicker></mat-datepicker>
-       </mat-form-field><br><br>
-         
-         
-         <mat-form-field class="example-full-width">
-           <mat-label>Task ID</mat-label>
-           <input matInput #message formControlName="task_id" maxlength="3" name="task_id" required> 
-             </mat-form-field><br><br><br>
-       
- 
-         <mat-form-field class="example-full-width">
-            <mat-label>Task Name</mat-label>
-            <input matInput #message formControlName="name" maxlength="100"  name="name" >
-           </mat-form-field><br><br>
- 
-           <mat-form-field>
-            <mat-label>Select Type of Task</mat-label>
-            <mat-select [(value)]="selectedType" formControlName="type" required>
-              <mat-option value="Escavation">Escavation</mat-option>
-              <mat-option value="Brick Wall">Brick Wall</mat-option>
-              <mat-option value="Cement Plaster">Cement Plaster</mat-option>
-              <mat-option value="Concrete Grade:25">Concrete Grade:25</mat-option>
-              <mat-option value="Concrete Grade:15">Concrete Grade:15</mat-option>
-              <mat-option value="Rainforcement">Rainforcement</mat-option>
-              <mat-option value="Tile Floor">Tile Floor</mat-option>
-              <mat-option value="ABC Road">ABC Road</mat-option>
-             
-            </mat-select>
-           
+          
+          <mat-form-field>
+          <mat-label>Allocation Date</mat-label>
+          <input matInput [matDatepicker]="doapicker" formControlName="allocation_date" required>
+          <mat-datepicker-toggle matSuffix [for]="doapicker"></mat-datepicker-toggle>
+          <mat-datepicker #doapicker></mat-datepicker>
+        </mat-form-field><br><br>
+          
+          
+          <mat-form-field class="example-full-width">
+            <mat-label>Task ID</mat-label>
+            <input matInput #message formControlName="task_id" maxlength="3" name="task_id" required> 
+              </mat-form-field><br><br><br>
+        
+  
+          <mat-form-field class="example-full-width">
+              <mat-label>Task Name</mat-label>
+              <input matInput #message formControlName="name" maxlength="100"  name="name" >
+            </mat-form-field><br><br>
+  
+            <mat-form-field>
+              <mat-label>Select Type of Task</mat-label>
+              <mat-select [(value)]="selectedType" formControlName="type" required>
+                <mat-option value="Escavation">Escavation</mat-option>
+                <mat-option value="Brick Wall">Brick Wall</mat-option>
+                <mat-option value="Cement Plaster">Cement Plaster</mat-option>
+                <mat-option value="Concrete Grade:25">Concrete Grade:25</mat-option>
+                <mat-option value="Concrete Grade:15">Concrete Grade:15</mat-option>
+                <mat-option value="Rainforcement">Rainforcement</mat-option>
+                <mat-option value="Tile Floor">Tile Floor</mat-option>
+                <mat-option value="ABC Road">ABC Road</mat-option>
+              
+              </mat-select>
             
-            </mat-form-field> <br><br>
-           
-            <mat-divider></mat-divider>
-            <h2>Measurements</h2><br><br>
-           
-             <mat-form-field class="example-full-width">
-                 <mat-label>Length (m)</mat-label>
-                 <input matInput #message formControlName="length" maxlength="25"  name="length" >
-            </mat-form-field> <br>
- 
-             <mat-form-field class="example-full-width">
-             <mat-label>Width (m)</mat-label>
-             <input matInput #message formControlName="width" maxlength="25" placeholder="width" >
-             </mat-form-field> <br>
- 
-             <mat-form-field class="example-full-width">
-                 <mat-label>Height (m)</mat-label>
-                 <input matInput #message formControlName="height" maxlength="25" placeholder="height" >
-                 </mat-form-field> <br>
+              
+              </mat-form-field> <br><br>
             
-             <mat-form-field class="example-full-width">
-                 <mat-label>Weight (Tons)<strong>For Rainforcement</strong></mat-label>
-                 <input matInput #message formControlName="height" maxlength="25" placeholder="height" >
-                 </mat-form-field> <br><br><br><br>
- 
-    
-         <button (click)=onUpdateTask() mat-raised-button color="primary">Save</button>&nbsp;&nbsp;
-         <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
- 
-       </form>
- 
- 
-</mat-card>
+              <mat-divider></mat-divider>
+              <h2>Measurements</h2><br><br>
+            
+              <mat-form-field class="example-full-width">
+                  <mat-label>Length (m)</mat-label>
+                  <input matInput #message formControlName="length" maxlength="25"  name="length" >
+              </mat-form-field> <br>
+  
+              <mat-form-field class="example-full-width">
+              <mat-label>Width (m)</mat-label>
+              <input matInput #message formControlName="width" maxlength="25" placeholder="width" >
+              </mat-form-field> <br>
+  
+              <mat-form-field class="example-full-width">
+                  <mat-label>Height (m)</mat-label>
+                  <input matInput #message formControlName="height" maxlength="25" placeholder="height" >
+                  </mat-form-field> <br>
+              
+              <mat-form-field class="example-full-width">
+                  <mat-label>Weight (Tons)<strong>For Rainforcement</strong></mat-label>
+                  <input matInput #message formControlName="height" maxlength="25" placeholder="height" >
+                  </mat-form-field> <br><br><br><br>
+  
+      
+          <button (click)=onUpdateTask() mat-raised-button color="primary">Save</button>&nbsp;&nbsp;
+          <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+  
+        </form>
+  
+  
+  </mat-card>

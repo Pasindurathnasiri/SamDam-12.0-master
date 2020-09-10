@@ -1,174 +1,174 @@
-<h1 align="center">Start Project</h1><br><br>
+  <h1 align="center">Start Project</h1><br><br>
 
-<mat-card class="card">
-    <mat-horizontal-stepper linear #stepper>
-        <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-          <form (ngSubmit)="onSubmit()" [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Details of Starting Site or Project</ng-template>
-         <!--Add details of new site here-->
-            <mat-form-field class="example-full-width">
-                <mat-label>Project/Site ID</mat-label>
-                <input matInput #message formControlName="site_id" maxlength="4" placeholder="Ex. 0012" name="site_id" required> 
-                <mat-hint align="start"><strong>Don't Add Charachters</strong> </mat-hint>
-                <mat-hint align="end">{{message.value.length}} / 5</mat-hint>
-            </mat-form-field><br><br><br>
+  <mat-card class="card">
+      <mat-horizontal-stepper linear #stepper>
+          <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+            <form (ngSubmit)="onSubmit()" [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Details of Starting Site or Project</ng-template>
+          <!--Add details of new site here-->
+              <mat-form-field class="example-full-width">
+                  <mat-label>Project/Site ID</mat-label>
+                  <input matInput #message formControlName="site_id" maxlength="4" placeholder="Ex. 0012" name="site_id" required> 
+                  <mat-hint align="start"><strong>Don't Add Charachters</strong> </mat-hint>
+                  <mat-hint align="end">{{message.value.length}} / 5</mat-hint>
+              </mat-form-field><br><br><br>
 
-            
-         <mat-form-field class="site_name">
-            <mat-label>Site Name</mat-label>
-            <input matInput #message formControlName="site_name" maxlength="256" name="site_name" required>
-            <mat-hint align="start"><strong>Type a Suitable Name for Starting Project</strong> </mat-hint>
-         </mat-form-field> <br><br><br>
-         <mat-form-field>
-          <mat-label>Type of Construction</mat-label>
-          <mat-select [(value)]="selectedType" formControlName="type_of_site" required>
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let type of types" [value]="type">
-              {{type.name}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="typeControl.hasError('required')">Please choose the type of the project</mat-error>
-          <mat-hint>{{typeControl.value?.sound}}</mat-hint>
+              
+          <mat-form-field class="site_name">
+              <mat-label>Site Name</mat-label>
+              <input matInput #message formControlName="site_name" maxlength="256" name="site_name" required>
+              <mat-hint align="start"><strong>Type a Suitable Name for Starting Project</strong> </mat-hint>
+          </mat-form-field> <br><br><br>
+          <mat-form-field>
+            <mat-label>Type of Construction</mat-label>
+            <mat-select [(value)]="selectedType" formControlName="type_of_site" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{type.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="typeControl.hasError('required')">Please choose the type of the project</mat-error>
+            <mat-hint>{{typeControl.value?.sound}}</mat-hint>
+          </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          <mat-form-field class="est_noemployees">
+            <mat-label>Estimated No. of Un-Skilled Labours</mat-label>
+            <input type="number" matInput #message formControlName="no_of_usk" maxlength="3"  required>
         </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <mat-form-field class="est_noemployees">
-          <mat-label>Estimated No. of Un-Skilled Labours</mat-label>
-          <input type="number" matInput #message formControlName="no_of_usk" maxlength="3"  required>
-       </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-       
-       <mat-form-field class="est_noemployees">
-        <mat-label>Estimated No. of Skilled Labours</mat-label>
-        <input type="number" matInput #message formControlName="no_of_sk" maxlength="3"  required>
-       </mat-form-field> <br><br><br>
-
-       <mat-form-field class="est_noemployees">
-        <mat-label>Estimated Budget</mat-label>
-        <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput #message formControlName="est_budget" maxlength="10"  name="site_name" required>
-       </mat-form-field> <br><br><br>
-
-         <mat-form-field class="place">
-            <mat-label>Nearest Town</mat-label>
-            <input matInput #message formControlName="place" maxlength="256"  name="place" required>
-           
-         </mat-form-field> <br><br><br>
-         <mat-form-field>
-            <mat-label>Starting Date</mat-label>
-            <input matInput [matDatepicker]="s_dpicker" formControlName="start_date" required>
-            <mat-datepicker-toggle matSuffix [for]="s_dpicker"></mat-datepicker-toggle>
-            <mat-datepicker #s_dpicker></mat-datepicker>
-          </mat-form-field><br><br>
-          <mat-form-field>
-            <mat-label>Estimated Completing Date</mat-label>
-            <input matInput [matDatepicker]="e_dpicker" formControlName="end_date" required>
-            <mat-datepicker-toggle matSuffix [for]="e_dpicker"></mat-datepicker-toggle>
-            <mat-datepicker #e_dpicker></mat-datepicker>
-          </mat-form-field><br><br><br><br><br>
-            <div>
-              <button type="submit" mat-raised-button matStepperNext color="primary">Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-          <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Allocate Employees</ng-template>
-            <!--Allocate Options Here-->
-
-            <h2>Select Employees from the list</h2>
-
-            <!--Employee Table Here with filter-->
-            <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
-
-              <!-- Checkbox Column -->
-              <ng-container matColumnDef="select">
-                <th mat-header-cell *matHeaderCellDef>
-                  <mat-checkbox (change)="$event ? masterToggle() : null"
-                                [checked]="selection.hasValue() && isAllSelected()"
-                                [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                [aria-label]="checkboxLabel()">
-                  </mat-checkbox>
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  <mat-checkbox (click)="$event.stopPropagation()"
-                                (change)="$event ? selection.toggle(row) : null"
-                                [checked]="selection.isSelected(row)"
-                                [aria-label]="checkboxLabel(row)">
-                  </mat-checkbox>
-                </td>
-              </ng-container>
-            
-              
-            
-             <!-- Id Column -->
-      <ng-container matColumnDef="emp_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Id</th>
-        <td mat-cell *matCellDef="let row">{{row.emp_id}}</td>
-      </ng-container>
-  
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
-        <td mat-cell *matCellDef="let row">{{row.name_in}}</td>
-      </ng-container>
         
-      <ng-container matColumnDef="gender">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
-        <td mat-cell *matCellDef="let row">{{row.gender}}</td>
-      </ng-container>
- 
-  
-      <ng-container matColumnDef="designation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
-        <td mat-cell *matCellDef="let row">{{row.designation[0].name}}</td>
-      </ng-container>
-  
-      
-      <ng-container matColumnDef="site">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Site</th>
-        <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
-      </ng-container>
+        <mat-form-field class="est_noemployees">
+          <mat-label>Estimated No. of Skilled Labours</mat-label>
+          <input type="number" matInput #message formControlName="no_of_sk" maxlength="3"  required>
+        </mat-form-field> <br><br><br>
 
+        <mat-form-field class="est_noemployees">
+          <mat-label>Estimated Budget</mat-label>
+          <input mvndrMatCurrencyFormat [allowNegative]="false" [currencyCode]="'Rs:'" matInput #message formControlName="est_budget" maxlength="10"  name="site_name" required>
+        </mat-form-field> <br><br><br>
 
-      <ng-container matColumnDef="loading">
-        <mat-footer-cell *matFooterCellDef colspan="6">
-          Loading Data...
-        </mat-footer-cell>
-      </ng-container>
-
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                  (click)="selection.toggle(row) ">
-              </tr>
-              <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
- 
-            </table><mat-paginator #paginator
-            [length]="dataSource?.data.length"
-            [pageIndex]="0"
-            [pageSize]="50"
-            [pageSizeOptions]="[25, 50, 100, 250]">
-        </mat-paginator>  <br><br><br>
+          <mat-form-field class="place">
+              <mat-label>Nearest Town</mat-label>
+              <input matInput #message formControlName="place" maxlength="256"  name="place" required>
             
+          </mat-form-field> <br><br><br>
+          <mat-form-field>
+              <mat-label>Starting Date</mat-label>
+              <input matInput [matDatepicker]="s_dpicker" formControlName="start_date" required>
+              <mat-datepicker-toggle matSuffix [for]="s_dpicker"></mat-datepicker-toggle>
+              <mat-datepicker #s_dpicker></mat-datepicker>
+            </mat-form-field><br><br>
+            <mat-form-field>
+              <mat-label>Estimated Completing Date</mat-label>
+              <input matInput [matDatepicker]="e_dpicker" formControlName="end_date" required>
+              <mat-datepicker-toggle matSuffix [for]="e_dpicker"></mat-datepicker-toggle>
+              <mat-datepicker #e_dpicker></mat-datepicker>
+            </mat-form-field><br><br><br><br><br>
+              <div>
+                <button type="submit" mat-raised-button matStepperNext color="primary">Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+            <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Allocate Employees</ng-template>
+              <!--Allocate Options Here-->
+
+              <h2>Select Employees from the list</h2>
+
+              <!--Employee Table Here with filter-->
+              <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)"
+                                  [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+              
+                
+              
+              <!-- Id Column -->
+        <ng-container matColumnDef="emp_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Id</th>
+          <td mat-cell *matCellDef="let row">{{row.emp_id}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+          <td mat-cell *matCellDef="let row">{{row.name_in}}</td>
+        </ng-container>
+          
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+          <td mat-cell *matCellDef="let row">{{row.gender}}</td>
+        </ng-container>
+  
+    
+        <ng-container matColumnDef="designation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+          <td mat-cell *matCellDef="let row">{{row.designation[0].name}}</td>
+        </ng-container>
+    
+        
+        <ng-container matColumnDef="site">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Site</th>
+          <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="loading">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+            Loading Data...
+          </mat-footer-cell>
+        </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                    (click)="selection.toggle(row) ">
+                </tr>
+                <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+  
+              </table><mat-paginator #paginator
+              [length]="dataSource?.data.length"
+              [pageIndex]="0"
+              [pageSize]="50"
+              [pageSizeOptions]="[25, 50, 100, 250]">
+          </mat-paginator>  <br><br><br>
+              
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+                <button mat-button (click)="GetSelect()">Allocate</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+          <h1 align="center">Construnction Site Scheduled Successfully..</h1>
+            <img src="../../assets/img/Done.gif" align="center">
             <div>
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-              <button mat-button (click)="GetSelect()">Allocate</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
             </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-         <h1 align="center">Construnction Site Scheduled Successfully..</h1>
-          <img src="../../assets/img/Done.gif" align="center">
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-step>
-      </mat-horizontal-stepper>
-</mat-card>
+          </mat-step>
+        </mat-horizontal-stepper>
+  </mat-card>
 
 
-<!--
-     
+  <!--
+      
 
--->
+  -->

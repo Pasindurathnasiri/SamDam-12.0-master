@@ -1,91 +1,91 @@
-<h1 align="center">Daily Works Sheet </h1>
-<form [formGroup]="this.dailyWorkForm" #resetaddGroup="ngForm">
-    <!--Date picker, state, ot -->
-    <mat-form-field>
-        <mat-label>Date</mat-label>
-        <input matInput [max]="maxDate" [matDatepicker]="dobpicker" formControlName="date" required>
-        <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
-        <mat-datepicker #dobpicker></mat-datepicker>
-      </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <h1 align="center">Daily Works Sheet </h1>
+  <form [formGroup]="this.dailyWorkForm" #resetaddGroup="ngForm">
+      <!--Date picker, state, ot -->
+      <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input matInput [max]="maxDate" [matDatepicker]="dobpicker" formControlName="date" required>
+          <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+          <mat-datepicker #dobpicker></mat-datepicker>
+        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Length (m)</mat-label>
-        <input matInput #message formControlName="length" maxlength="25"  name="length" >
-   </mat-form-field> <br>
-
-    <mat-form-field class="example-full-width">
-    <mat-label>Width (m)</mat-label>
-    <input matInput #message formControlName="width" maxlength="25" placeholder="width" >
+        <mat-form-field class="example-full-width">
+          <mat-label>Length (m)</mat-label>
+          <input matInput #message formControlName="length" maxlength="25"  name="length" >
     </mat-form-field> <br>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Height (m)</mat-label>
-        <input matInput #message formControlName="height" maxlength="25" placeholder="height" >
-        </mat-form-field> <br>
-   
-    <mat-form-field class="example-full-width">
-        <mat-label>Weight (Tons)<strong>For Rainforcement</strong></mat-label>
-        <input matInput #message formControlName="weight" maxlength="25" placeholder="weight" >
-        </mat-form-field> <br><br><br><br>
+      <mat-form-field class="example-full-width">
+      <mat-label>Width (m)</mat-label>
+      <input matInput #message formControlName="width" maxlength="25" placeholder="width" >
+      </mat-form-field> <br>
 
-    <!--Buttons to add or delete attendance-->
-    <button  mat-raised-button (click)="onAddDailyWork()" color="primary">Add Record</button>&nbsp;&nbsp;
-    <button  mat-raised-button (click)="onCancel()" color="primary">Cancel</button>
-     
-</form>
+      <mat-form-field class="example-full-width">
+          <mat-label>Height (m)</mat-label>
+          <input matInput #message formControlName="height" maxlength="25" placeholder="height" >
+          </mat-form-field> <br>
+    
+      <mat-form-field class="example-full-width">
+          <mat-label>Weight (Tons)<strong>For Rainforcement</strong></mat-label>
+          <input matInput #message formControlName="weight" maxlength="25" placeholder="weight" >
+          </mat-form-field> <br><br><br><br>
+
+      <!--Buttons to add or delete attendance-->
+      <button  mat-raised-button (click)="onAddDailyWork()" color="primary">Add Record</button>&nbsp;&nbsp;
+      <button  mat-raised-button (click)="onCancel()" color="primary">Cancel</button>
+      
+  </form>
 
 
-<div class="mat-elevation-z8">
-    <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceDW">
+  <div class="mat-elevation-z8">
+      <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceDW">
+    
   
- 
-      <!-- Id Column -->
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-        <td mat-cell *matCellDef="let row">{{row.date}}</td>
-      </ng-container>
-  
-      <ng-container matColumnDef="length">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Length (m)</th>
-        <td mat-cell *matCellDef="let row">{{row.length}}</td>
-      </ng-container>
-        
-      <ng-container matColumnDef="width">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Width(m)</th>
-        <td mat-cell *matCellDef="let row">{{row.width}}</td>
-      </ng-container>
-     
-      <ng-container matColumnDef="height">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Height(m)</th>
-        <td mat-cell *matCellDef="let row">{{row.height}}</td>
-      </ng-container>
-     
-  
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Remove Record </th>
-        <td mat-cell *matCellDef="let element; let i = index;">
-          <button mat-icon-button color="warn" (click)="onRemoveRecord(i,element)" class="push-right"><mat-icon>remove_circle_outline</mat-icon></button>
-          </td>
-      </ng-container>
-
-
+        <!-- Id Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+          <td mat-cell *matCellDef="let row">{{row.date}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="length">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Length (m)</th>
+          <td mat-cell *matCellDef="let row">{{row.length}}</td>
+        </ng-container>
           
-  
-      <ng-container matColumnDef="loading">
-        <mat-footer-cell *matFooterCellDef colspan="6">
-          Loading Data...
-        </mat-footer-cell>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumnsDW"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumnsDW;"></tr>
-      <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
-    </table>
-  
-    <mat-paginator #paginator
-        [length]="dataSourceDW?.data.length"
-        [pageIndex]="0"
-        [pageSize]="50"
-        [pageSizeOptions]="[25, 50, 100, 250]">
-    </mat-paginator>
-  </div>
+        <ng-container matColumnDef="width">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Width(m)</th>
+          <td mat-cell *matCellDef="let row">{{row.width}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="height">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Height(m)</th>
+          <td mat-cell *matCellDef="let row">{{row.height}}</td>
+        </ng-container>
+      
+    
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Remove Record </th>
+          <td mat-cell *matCellDef="let element; let i = index;">
+            <button mat-icon-button color="warn" (click)="onRemoveRecord(i,element)" class="push-right"><mat-icon>remove_circle_outline</mat-icon></button>
+            </td>
+        </ng-container>
+
+
+            
+    
+        <ng-container matColumnDef="loading">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+            Loading Data...
+          </mat-footer-cell>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsDW"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsDW;"></tr>
+        <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+      </table>
+    
+      <mat-paginator #paginator
+          [length]="dataSourceDW?.data.length"
+          [pageIndex]="0"
+          [pageSize]="50"
+          [pageSizeOptions]="[25, 50, 100, 250]">
+      </mat-paginator>
+    </div>

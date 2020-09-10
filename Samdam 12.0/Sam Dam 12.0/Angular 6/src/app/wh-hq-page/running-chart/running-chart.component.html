@@ -1,93 +1,93 @@
-<h1 align="center">Runninng Chart  {{GetRegNo()}}</h1>
-<form [formGroup]="this.runningChartForm" #resetaddGroup="ngForm">
-    <!--Date picker, state, ot -->
-    <mat-form-field>
-        <mat-label>Date</mat-label>
-        <input matInput [matDatepicker]="dobpicker" formControlName="date">
-        <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
-        <mat-datepicker #dobpicker></mat-datepicker>
-      </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <h1 align="center">Runninng Chart  {{GetRegNo()}}</h1>
+  <form [formGroup]="this.runningChartForm" #resetaddGroup="ngForm">
+      <!--Date picker, state, ot -->
+      <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="dobpicker" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+          <mat-datepicker #dobpicker></mat-datepicker>
+        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-      <mat-form-field class="km_or_hr" >
-        <mat-label>Amount of Km/Hr</mat-label>
-        <input matInput maxlength="3" name="km_or_hr" formControlName="km_or_hr"> 
-      </mat-form-field><br><br>
+        <mat-form-field class="km_or_hr" >
+          <mat-label>Amount of Km/Hr</mat-label>
+          <input matInput maxlength="3" name="km_or_hr" formControlName="km_or_hr"> 
+        </mat-form-field><br><br>
 
-      <mat-form-field class="Description" >
-        <mat-label>Description</mat-label>
-        <input matInput maxlength="300" name="description" formControlName="description"> 
-      </mat-form-field><br><br>
-      
-      <mat-form-field class="fuel_input" >
-        <mat-label>Fuel Added</mat-label>
-        <input matInput maxlength="3" name="fuel_input" formControlName="fuel_input"> 
-      </mat-form-field><br><br>
-    <!--Buttons to add or delete attendance-->
-    <button  mat-raised-button (click)="onAddChart()" color="primary">Add Record</button>&nbsp;&nbsp;
-    <button  mat-raised-button (click)="onCancel()" color="primary">Cancel</button>
-     
-</form>
-
-
-<div class="mat-elevation-z8">
-    <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceVHRChart">
-  
- 
-      <!-- Id Column -->
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-        <td mat-cell *matCellDef="let row">{{row.date}}</td>
-      </ng-container>
-  
-      <ng-container matColumnDef="site">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Site</th>
-        <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
-      </ng-container>
+        <mat-form-field class="Description" >
+          <mat-label>Description</mat-label>
+          <input matInput maxlength="300" name="description" formControlName="description"> 
+        </mat-form-field><br><br>
         
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-        <td mat-cell *matCellDef="let row">{{row.description}}</td>
-      </ng-container>
-     
-      <ng-container matColumnDef="milage">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Milage (Km/Hr)</th>
-        <td mat-cell *matCellDef="let row">{{row.km_or_hr}}</td>
-      </ng-container>
-     
-      <ng-container matColumnDef="driver">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Driver/Operator</th>
-        <td mat-cell *matCellDef="let row">{{row.driver[0].name_in}}</td>
-      </ng-container> 
+        <mat-form-field class="fuel_input" >
+          <mat-label>Fuel Added</mat-label>
+          <input matInput maxlength="3" name="fuel_input" formControlName="fuel_input"> 
+        </mat-form-field><br><br>
+      <!--Buttons to add or delete attendance-->
+      <button  mat-raised-button (click)="onAddChart()" color="primary">Add Record</button>&nbsp;&nbsp;
+      <button  mat-raised-button (click)="onCancel()" color="primary">Cancel</button>
       
-      <ng-container matColumnDef="fuel">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fuel (L)</th>
-        <td mat-cell *matCellDef="let row">{{row.fuel_input}}</td>
-      </ng-container>
-      <ng-container matColumnDef="controls">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let element; let i = index;">
-          <button mat-icon-button color="warn" (click)="onRemoveRecord(i,element)" class="push-right"><mat-icon>remove_circle_outline</mat-icon></button>
-          </td>
-      </ng-container>
+  </form>
 
 
+  <div class="mat-elevation-z8">
+      <table mat-table class="full-width-table" id="table" matSort aria-label="Elements" [dataSource]="dataSourceVHRChart">
+    
+  
+        <!-- Id Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+          <td mat-cell *matCellDef="let row">{{row.date}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="site">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Site</th>
+          <td mat-cell *matCellDef="let row">{{row.site[0].site_name}}</td>
+        </ng-container>
           
-  
-      <ng-container matColumnDef="loading">
-        <mat-footer-cell *matFooterCellDef colspan="6">
-          Loading Data...
-        </mat-footer-cell>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumnsRC"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumnsRC;"></tr>
-      <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
-    </table>
-  
-    <mat-paginator #paginator
-        [length]="dataSourceVHRChart?.data.length"
-        [pageIndex]="0"
-        [pageSize]="50"
-        [pageSizeOptions]="[25, 50, 100, 250]">
-    </mat-paginator>
-  </div>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+          <td mat-cell *matCellDef="let row">{{row.description}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="milage">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Milage (Km/Hr)</th>
+          <td mat-cell *matCellDef="let row">{{row.km_or_hr}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="driver">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Driver/Operator</th>
+          <td mat-cell *matCellDef="let row">{{row.driver[0].name_in}}</td>
+        </ng-container> 
+        
+        <ng-container matColumnDef="fuel">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fuel (L)</th>
+          <td mat-cell *matCellDef="let row">{{row.fuel_input}}</td>
+        </ng-container>
+        <ng-container matColumnDef="controls">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element; let i = index;">
+            <button mat-icon-button color="warn" (click)="onRemoveRecord(i,element)" class="push-right"><mat-icon>remove_circle_outline</mat-icon></button>
+            </td>
+        </ng-container>
+
+
+            
+    
+        <ng-container matColumnDef="loading">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+            Loading Data...
+          </mat-footer-cell>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsRC"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsRC;"></tr>
+        <mat-footer-row *matFooterDef="['Loading']" [ngClass]="{'hide':data!=null}"></mat-footer-row>
+      </table>
+    
+      <mat-paginator #paginator
+          [length]="dataSourceVHRChart?.data.length"
+          [pageIndex]="0"
+          [pageSize]="50"
+          [pageSizeOptions]="[25, 50, 100, 250]">
+      </mat-paginator>
+    </div>
