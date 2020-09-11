@@ -6,6 +6,9 @@
   import { Eqipment } from '../shared/equipment.model';
   import { AttendanceService } from '../shared/attendance.service';
   import {AccountingService } from '../shared/accounting.service';
+  import * as jspdf from 'jspdf';
+  import html2canvas from 'html2canvas';
+
 
   interface Site{
     _id:string;
@@ -21,13 +24,16 @@
     styleUrls: ['./eb-monthly-reports.component.css']
   })
   export class EbMonthlyReportsComponent implements OnInit {
+    dataSourceTR:MatTableDataSource<any>;
     siteControl = new FormControl('',Validators.required);
     siteFormControl = new FormControl('', Validators.required);
     sites: Site [] = [];
     AllSiteDate:any=[];
+    allTransactionsData :any =[];
     AllAttendanceData:any=[];
     AllEquipmentData: any =[];
     AllTransactionData: any =[];
+    forSelectMonth:FormGroup;
     chartdata: any=[];
     chartdata_attendance: any=[];
     chartdata_accounting: any=[];
@@ -54,12 +60,19 @@
     width = 850;
     height = 700;
     height2 = 700;
-    constructor(private materialService:MaterialService,private siteService:SiteService,private attendanceService:AttendanceService,private accountingService:AccountingService) {
+    constructor(private materialService:MaterialService,private accService:AccountingService,private siteService:SiteService,private formBuilder: FormBuilder,private attendanceService:AttendanceService,private accountingService:AccountingService) {
       this.materialService.getAllEquipment().subscribe(dataEQ=>{
       this.AllEquipmentData=dataEQ;
       
       
       })
+
+
+      this.forSelectMonth= this.formBuilder.group({
+        
+        select_month:[]
+      })
+
 
       //get sites
       this.siteService.GetAllSites().subscribe(data =>{
@@ -83,7 +96,7 @@
       //get all expences data
       this.accountingService.getAllTransactions().subscribe(data=>{
         this.AllTransactionData=data;
-        console.log(this.AllTransactionData);
+        this.dataSourceTR = new MatTableDataSource<any>(this.allTransactionsData);
         setTimeout(()=>{
 
         },0)
@@ -126,21 +139,71 @@
       return this.chartdata_attendance;
     }
 
-    getData3(){
+    onMonthChange(){
+      var selectedmonth = this.forSelectMonth.value.select_month;
+      this.dataSourceTR.filter =selectedmonth;
+      console.log(this.dataSourceTR);
       var site_index;
       var acc_index=0;
       for(var i=0;i<this.AllSiteDate.length;i++){
         site_index=this.AllSiteDate[i].site_name;
         
-        for(var j=0;j<this.AllTransactionData.length;j++){
-          if(this.AllTransactionData[j].site_id=this.AllSiteDate[i].site_id){
-            acc_index=acc_index+(this.AllTransactionData[j].bank_credit+this.AllTransactionData[j].cash_debit);
+        for(var j=0;j<this.dataSourceTR.filteredData.length;j++){
+          if(this.dataSourceTR.filteredData[j].site_id=this.AllSiteDate[i].site_id){
+            acc_index=acc_index+(this.dataSourceTR.filteredData[j].bank_debit+this.dataSourceTR.filteredData[j].cash_credit);
           }
         }
         this.chartdata_accounting[i] =[`${site_index}`,acc_index];
       }
-      console.log(this.chartdata_accounting);
       return this.chartdata_accounting;
+    }
+  
+    getData3(){
+      var site_index;
+      var acc_index=0;
+      
+      for(var i=0;i<this.AllSiteDate.length;i++){
+        site_index=this.AllSiteDate[i].site_name;
+        for(var j=0;j<this.AllTransactionData.length;j++){
+          if(this.AllTransactionData[j].site_id=this.AllSiteDate[i].site_id){
+            acc_index=acc_index+(this.AllTransactionData[j].bank_debit+this.AllTransactionData[j].cash_credit);
+            
+          }
+        }
+        this.chartdata_accounting[i] =[`${site_index}`,acc_index];
+        
+      }
+      
+      return this.chartdata_accounting;
+      
+    }
+
+    printTR(){
+      var element = document.getElementById('cardTR')
+
+      html2canvas(element).then((canvas)=>{
+        console.log(canvas);
+  
+        var imgData = canvas.toDataURL('image/png')
+        var doc = new jspdf()
+        var imgHeight = canvas.height *260 /canvas.width;
+        doc.addImage(imgData,0,0,260,imgHeight)
+        doc.save("TRReport.pdf")
+      })
+    }
+
+    printEQU(){
+      var element = document.getElementById('cardEQ')
+
+      html2canvas(element).then((canvas)=>{
+        console.log(canvas);
+  
+        var imgData = canvas.toDataURL('image/png')
+        var doc = new jspdf()
+        var imgHeight = canvas.height *260 /canvas.width;
+        doc.addImage(imgData,0,0,260,imgHeight)
+        doc.save("EQReport.pdf")
+      })
     }
 
   }

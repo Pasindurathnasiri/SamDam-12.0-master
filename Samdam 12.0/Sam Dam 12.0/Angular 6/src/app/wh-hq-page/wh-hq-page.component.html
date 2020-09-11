@@ -6,20 +6,6 @@
       <mat-tab label="Material">
           <br><br><br>
           <mat-accordion>
-              
-        
-              <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Availabale Material types
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    Expand to View The Availabale Material Types
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-              
-                <!-- Material type add and delete and update table -->
-  
 
       
       <div class="crud-btn">
@@ -32,6 +18,7 @@
       </div><br><br>
       <!--Employee Table-->
       <mat-card id="print_table">
+        <h1 align="center">List of Material Types</h1>
         
       <div class="employee-tbl">
         <p *ngIf="AllMaterialData.length <= 0" class="no-data">There is no Material added yet!</p>
@@ -110,23 +97,16 @@
         
       
       </div></mat-card>
-              </mat-expansion-panel><br><br> <br>
+              <br><br> <br>
               
         
-              <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Manage HQ Warehouse Material
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    Expand to Manage Material Balance
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
+             <mat-card>
               <!-- from here table -->
               <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add</button>&nbsp;&nbsp;
               <button class="remove-btn" (click)="onTransfer()" mat-raised-button color="primary"><mat-icon>outbond</mat-icon>&nbsp;Transit Material</button>&nbsp;&nbsp;&nbsp;
-              <button class="remove-btn" (click)="printTable()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button>
+              <button class="remove-btn" (click)="printTable()" mat-raised-button color="primary"><mat-icon>local_printshop</mat-icon>&nbsp;Print</button><br><br>
               <!-- Select site -->
+              <h1 align="center">List of Material Types</h1>
               <form [formGroup]=this.forSelectMonth>
                 <mat-form-field>
                   <mat-label>Select Month</mat-label>
@@ -168,8 +148,8 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumnsMat;"></tr>
                 <tr mat-footer-row *matFooterRowDef="displayedColumnsMat; sticky: true"></tr>
         
-              </table>
-              </mat-expansion-panel>
+              </table><br><br>
+            </mat-card>
 
           </mat-accordion>
       </mat-tab>

@@ -105,7 +105,7 @@
         }
       }
     );
-    window.alert("New Equipment Record Added Successfully");
-      //location.reload();
+    // window.alert("New Equipment Record Added Successfully");
+    //   //location.reload();
     }
   }

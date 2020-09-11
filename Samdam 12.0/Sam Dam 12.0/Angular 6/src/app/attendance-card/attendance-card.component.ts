@@ -18,6 +18,8 @@
   import { da } from 'date-fns/locale';
 
   export interface AttendanceData{
+    minDate: Date;
+    maxDate: Date;
     // _id:string;
     // name_in:string;
     // attendance:Array<Date>
@@ -42,6 +44,7 @@
     date:Array<Date>
   }
 
+  
   var idFilter;
 
   @Component({
@@ -52,6 +55,8 @@
   })
   export class AttendanceCardComponent implements OnInit {
 
+    minDate: Date;
+    maxDate: Date;
     public readonly dateForm :FormGroup; 
     attendanceForm :FormGroup;
     forSelectMonth:FormGroup;
@@ -69,8 +74,15 @@
     
 
     constructor(private attendanceApi:AttendanceService,private router: Router,private formBuilder: FormBuilder,private actRoute:ActivatedRoute,private dialog:MatDialog,private _bottomSheetRef: MatBottomSheetRef<AttendanceCardComponent>,@Optional() @Inject(MAT_BOTTOM_SHEET_DATA) public data: AttendanceData) {
-    //get month from date picker
+      var currentDate = new Date()
     
+    
+      this.minDate = new Date();
+      this.maxDate = new Date(currentDate);
+
+      //get month from date picker
+    
+  
     var filterID = data.emp_id;
     idFilter=filterID;
     

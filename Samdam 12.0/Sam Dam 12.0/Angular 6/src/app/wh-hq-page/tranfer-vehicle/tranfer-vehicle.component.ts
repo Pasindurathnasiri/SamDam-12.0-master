@@ -118,8 +118,9 @@
         })
 
       }
-      location.reload();
+     
       window.alert("Vehicle Transferred Successfully..!");
+      location.reload();
     }  
 
     initializeUpdateForm(){

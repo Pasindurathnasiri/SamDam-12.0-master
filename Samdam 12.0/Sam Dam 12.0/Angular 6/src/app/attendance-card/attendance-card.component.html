@@ -25,7 +25,7 @@
       <!--Date picker, state, ot -->
       <mat-form-field>
           <mat-label>Date</mat-label>
-          <input matInput [matDatepicker]="dobpicker" formControlName="datepicker">
+          <input matInput [max]="maxDate" [matDatepicker]="dobpicker" formControlName="datepicker">
           <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
           <mat-datepicker #dobpicker></mat-datepicker>
         </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
